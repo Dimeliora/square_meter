@@ -1,0 +1,39 @@
+.top-panel {
+  height: 58px;
+  background-color: #000000;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0 15px;
+}
+
+.top-panel__container {
+  max-width: 1170px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.top-panel__link {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  transition: color 0.3s;
+}
+
+.top-panel__link i {
+  margin-right: 10px;
+}
+
+.top-panel__link:hover {
+  color: #dfd6b1;
+  text-decoration: none;
+}
+
+.top-panel__link.link--active {
+  color: #ffdd56;
+}
