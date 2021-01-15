@@ -5,10 +5,10 @@ const Footer = () => {
     <footer className="footer">
       <div className="container">
         <p>
-          Учебный проект школы <a href="https://webcademy.ru/">ВебКадеми.рф</a>с
+          Учебный проект школы <a href="/">ВебКадеми.рф</a>с
           курса{' '}
-          <a href="https://webcademy.ru/jscourse/">JavaScript разработка</a>.
-          Проект выполнил <a href="#/">Di Meliora</a>.
+          <a href="/">JavaScript разработка</a>.
+          Проект выполнил <a href="/">Di Meliora</a>.
         </p>
       </div>
     </footer>

@@ -1,7 +1,13 @@
+import Filter from '../../Components/Filter';
+
 import './Objects.css';
 
 const Objects = () => {
-  return <div>Objects Page</div>;
+  return (
+    <div>
+      <Filter />
+    </div>
+  );
 };
 
 export default Objects;
