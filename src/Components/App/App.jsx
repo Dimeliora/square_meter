@@ -1,13 +1,13 @@
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route } from "react-router-dom";
 
-import './App.css';
+import Header from "../Header";
+import Logo from "../Logo";
+import Footer from "../Footer";
+import ObjectsContainer from "../../Pages/Objects/ObjectsContainer";
+import Favs from "../../Pages/Favs";
+import Bids from "../../Pages/Bids";
 
-import Header from '../Header';
-import Logo from '../Logo';
-import Footer from '../Footer';
-import Objects from '../../Pages/Objects';
-import Favs from '../../Pages/Favs';
-import Bids from '../../Pages/Bids';
+import "./App.css";
 
 const App = () => {
   return (
@@ -16,7 +16,7 @@ const App = () => {
         <Header />
         <Logo />
         <Switch>
-          <Route exact path="/" component={Objects} />
+          <Route exact path="/" component={ObjectsContainer} />
           <Route path="/favs" component={Favs} />
           <Route path="/bids" component={Bids} />
         </Switch>

@@ -1,41 +1,46 @@
 import cn from 'classnames';
 
-const FilterRange = ({
-  type = 'text',
-  minValue = 0,
-  startValue = 0,
-  endValue = 0,
-  label = '',
-  unitType = '',
-  classname = '',
-}) => {
+const FilterRange = (props) => {
+  const {
+    minPlaceholder = 0,
+    maxPlaceholder = 0,
+    minValue = 0,
+    maxValue = 0,
+    label = '',
+    name = '',
+    unitType = '',
+    classname = '',
+    onInputChange,
+  } = props;
+
   return (
     <div className="filter__col">
       <div className="filter__label">{label}:</div>
       <div className="range__wrapper">
         <label className="range">
-          <div className="range__label">
-            от
-          </div>
+          <div className="range__label">от</div>
           <input
-            min={minValue}
-            type={type}
+            min="0"
+            type="number"
+            name={`${name}min`}
+            value={minValue}
             className={cn('range__input', classname)}
-            placeholder={startValue}
-            // value={startValue}
+            placeholder={minPlaceholder}
+            onChange={onInputChange}
           />
           <div className="range__value">{unitType}</div>
         </label>
+
         <label className="range">
-          <div className="range__label">
-            до
-          </div>
+          <div className="range__label">до</div>
           <input
-            min={minValue}
-            type={type}
+            min="0"
+            type="number"
+            name={`${name}max`}
+            value={maxValue}
             className={cn('range__input', classname)}
-            placeholder={endValue}
-            // value={endValue}
+            placeholder={maxPlaceholder}
+            onChange={onInputChange}
           />
           <div className="range__value">{unitType}</div>
         </label>

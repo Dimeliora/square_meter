@@ -1,71 +1,93 @@
-import React from 'react';
+import React from "react";
 
-import FilterSelect from './FilterSelect';
-import FilterCheckboxes from './FilterCheckboxes';
-import FilterRange from './FilterRange';
-import FilterControls from './FilterControls';
+import initialFilterValues from "../../Configs/initialFilterValues";
 
-import './Filter.css';
+import FilterSelect from "./FilterSelect";
+import FilterCheckboxes from "./FilterCheckboxes";
+import FilterRange from "./FilterRange";
+import FilterControls from "./FilterControls";
 
-const initFilterState = {
-  priceMin: 0,
-  priceMax: 0,
-  squareMin: 0,
-  squareMax: 0,
-  complexNames: [],
-  roomValues: [],
-};
+import "./Filter.css";
 
-const filterReducer = (state, action) => {
-  switch (action.type) {
-    case 'GET_INIT_VALUES':
-      return action.data;
-    default:
-      return state;
-  }
-};
-
-const Filter = () => {
-  const [state, dispatch] = React.useReducer(filterReducer, initFilterState);
-
-  React.useEffect(() => {
-    fetch('http://jsproject.webcademy.ru/itemsinfo')
-      .then((resp) => resp.json())
-      .then((data) => dispatch({ type: 'GET_INIT_VALUES', data }));
-  }, []);
+const Filter = (props) => {
+  const {
+    filterSettings,
+    filterValues,
+    totalObjectsAmount,
+    onFilterValuesChange,
+    onApplyFilter,
+    onResetFilter,
+  } = props;
 
   const {
-    priceMin,
-    priceMax,
     squareMin,
     squareMax,
+    priceMin,
+    priceMax,
     complexNames,
     roomValues,
-  } = state;
+  } = filterSettings;
+
+  const { complex, rooms, sqmin, sqmax, pricemin, pricemax } = filterValues;
+
+  const formRef = React.useRef();
+
+  const onFormStateChange = (e) => {
+    const input = e.target;
+    onFilterValuesChange([input.name, input.value]);
+  };
+
+  const onShowObjectsBtnClick = (e) => {
+    e.preventDefault();
+    onApplyFilter();
+  };
+
+  const onResetFormBtnClick = () => {
+    formRef.current.reset();
+    onResetFilter(initialFilterValues);
+  };
 
   return (
-    <form className="container p-0" id="filter-form">
+    <form className="container p-0" id="filter-form" ref={formRef}>
       <div className="heading-1">Выбор квартир:</div>
       <div className="filter">
-        <FilterSelect label="Проект:" options={complexNames} />
-        <FilterCheckboxes label="Комнат:" values={roomValues} />
-        <FilterRange
-          type="number"
-          startValue={squareMin}
-          endValue={squareMax}
-          label="Площадь"
-          unitType="м2"
+        <FilterSelect
+          value={complex}
+          options={complexNames}
+          onInputChange={onFormStateChange}
+        />
+        <FilterCheckboxes
+          values={roomValues}
+          checkedValues={rooms}
+          onInputChange={onFormStateChange}
         />
         <FilterRange
-          type="number"
-          startValue={priceMin}
-          endValue={priceMax}
+          minPlaceholder={squareMin}
+          maxPlaceholder={squareMax}
+          minValue={sqmin}
+          maxValue={sqmax}
+          label="Площадь"
+          name="sq"
+          unitType="м2"
+          onInputChange={onFormStateChange}
+        />
+        <FilterRange
+          minPlaceholder={priceMin}
+          maxPlaceholder={priceMax}
+          minValue={pricemin}
+          maxValue={pricemax}
           label="Стоимость"
+          name="price"
           unitType="₽"
           classname="range__input--price"
+          onInputChange={onFormStateChange}
         />
       </div>
-      <FilterControls objectsAmount={12} />
+      <FilterControls
+        objectsAmount={totalObjectsAmount}
+        onShowObjects={onShowObjectsBtnClick}
+        onResetForm={onResetFormBtnClick}
+      />
     </form>
   );
 };

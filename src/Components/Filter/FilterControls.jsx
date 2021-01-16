@@ -1,21 +1,20 @@
-import declension from '../../Utils/declension';
-
-const FilterControls = ({ objectsAmount = 0 }) => {
-  const btnLabelForms = {
-    1: 'объект',
-    '2-4': 'объекта',
-    '11-14': 'объектов',
-  };
+const FilterControls = ({ objectsAmount = 0, onShowObjects, onResetForm }) => {
   const showBtnLabel = objectsAmount
-    ? `Показать ${objectsAmount} ${declension(objectsAmount, btnLabelForms)}`
-    : 'Объектов, удовлетворяющих условиям не найдено';
+    ? `Показать объекты (${objectsAmount})`
+    : "Объектов, удовлетворяющих условиям не найдено";
+
+  const disableShowBtn = objectsAmount === 0;
 
   return (
     <div className="filter__buttons">
-      <button className="filter__show" id="show-button">
+      <button
+        className="filter__show"
+        disabled={disableShowBtn}
+        onClick={onShowObjects}
+      >
         {showBtnLabel}
       </button>
-      <button className="filter__reset" type="reset">
+      <button className="filter__reset" type="reset" onClick={onResetForm}>
         Сбросить фильтр
       </button>
     </div>
