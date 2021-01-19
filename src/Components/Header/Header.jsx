@@ -9,6 +9,14 @@ const Header = () => {
         <div className="top-panel__title">Интернет-магазин недвижимости</div>
         <div className="top-panel__menu">
           <NavLink
+            exact
+            to="/objects"
+            className="top-panel__link mr-5"
+            activeClassName="link--active"
+          >
+            <i className="fas fa-laptop-house"></i> Выбор квартир
+          </NavLink>
+          <NavLink
             to="/favs"
             className="top-panel__link mr-5"
             activeClassName="link--active"

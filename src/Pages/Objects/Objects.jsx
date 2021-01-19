@@ -1,48 +1,110 @@
-import React from "react";
+import React from 'react';
 
-import Filter from "../../Components/Filter/Filter";
-import Preloader from "../../Components/Preloader";
+import initialFilterValues from '../../Configs/initialFilterValues';
 
-import "./Objects.css";
+import Preloader from '../../Components/Preloaders/Loader';
+import Filter from '../../Components/Filter/Filter';
+import ObjectsListHeader from '../../Components/ObjectsListHeader';
+import ObjectsList from '../../Components/ObjectsList';
+
+import './Objects.css';
 
 const Objects = (props) => {
   const {
+    isFetching,
     filterSettings,
     filterValues,
     totalObjects,
-    isFetching,
     getInitData,
     setFilterInputValue,
     setInitialFilterValues,
     getFilteredData,
   } = props;
 
+  const [isFilterApplied, setIsFilterApplied] = React.useState(true);
+
+  const [objectsToShow, setObjectsToShow] = React.useState([]);
+
+  const [sortParams, setSortParams] = React.useState({
+    sorterName: null,
+    isAscending: null,
+  });
+
   React.useEffect(() => {
     if (!filterSettings) getInitData();
-  }, [filterSettings, getInitData]);
+  }, [filterSettings]);
 
   React.useEffect(() => {
-    getFilteredData(filterValues);
-  }, [filterValues, getFilteredData]);
+    if (filterSettings) getFilteredData(filterValues);
+  }, [filterValues]);
 
-  const showFilteredObjects = () => {
-    console.log("Show");
+  React.useEffect(() => {
+    if (isFilterApplied) setObjectsToShow(totalObjects);
+  }, [totalObjects]);
+
+  const onFilterValuesChange = (filterInputValue) => {
+    setFilterInputValue(filterInputValue);
+    setIsFilterApplied(false);
   };
 
-  if (isFetching) return <Preloader />;
+  const onResetFilter = () => {
+    setInitialFilterValues(initialFilterValues);
+    setIsFilterApplied(false);
+  };
+
+  const onApplyFilter = () => {
+    setObjectsToShow(totalObjects);
+    setIsFilterApplied(true);
+  };
+
+  const onSortObjects = ({ sorterName, isCurrentAscending }) => {
+    setSortParams((state) => ({
+      sorterName,
+      isAscending:
+        sorterName === state.sorterName
+          ? !state.isAscending
+          : isCurrentAscending,
+    }));
+  };
+
+  const sortObjectsToShow = (objects, isAscending, sorterName) => {
+    if (!sorterName) return objects;
+
+    const sortDir = isAscending ? 1 : -1;
+    return [...objects].sort(
+      (a, b) => (a[sorterName] - b[sorterName]) * sortDir,
+    );
+  };
+
+  if (!filterSettings) return <Preloader />;
+
+  const { isAscending, sorterName } = sortParams;
+  const sortedObjectsToShow = sortObjectsToShow(
+    objectsToShow,
+    isAscending,
+    sorterName,
+  );
 
   const totalObjectsAmount = totalObjects.length;
 
   return (
-    <div>
+    <div className="objects-wrapper">
       <Filter
+        isFetching={isFetching}
+        isFilterApplied={isFilterApplied}
         filterSettings={filterSettings}
         filterValues={filterValues}
         totalObjectsAmount={totalObjectsAmount}
-        onFilterValuesChange={setFilterInputValue}
-        onApplyFilter={showFilteredObjects}
-        onResetFilter={setInitialFilterValues}
+        onFilterValuesChange={onFilterValuesChange}
+        onApplyFilter={onApplyFilter}
+        onResetFilter={onResetFilter}
       />
+      <ObjectsListHeader
+        onSortObjects={onSortObjects}
+        activeSorter={sorterName}
+        isAscending={isAscending}
+      />
+      <ObjectsList totalObjects={sortedObjectsToShow} />
     </div>
   );
 };

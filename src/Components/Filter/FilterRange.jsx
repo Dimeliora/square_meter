@@ -1,5 +1,7 @@
 import cn from 'classnames';
 
+import priceNormalize from '../../Utils/priceNormalize';
+
 const FilterRange = (props) => {
   const {
     minPlaceholder = 0,
@@ -25,7 +27,7 @@ const FilterRange = (props) => {
             name={`${name}min`}
             value={minValue}
             className={cn('range__input', classname)}
-            placeholder={minPlaceholder}
+            placeholder={priceNormalize.format(minPlaceholder)}
             onChange={onInputChange}
           />
           <div className="range__value">{unitType}</div>
@@ -39,7 +41,7 @@ const FilterRange = (props) => {
             name={`${name}max`}
             value={maxValue}
             className={cn('range__input', classname)}
-            placeholder={maxPlaceholder}
+            placeholder={priceNormalize.format(maxPlaceholder)}
             onChange={onInputChange}
           />
           <div className="range__value">{unitType}</div>

@@ -10,9 +10,9 @@ import {
 import Objects from './Objects';
 
 const mapStateToProps = (state) => ({
+  isFetching: state.isFetching,
   filterSettings: state.filterSettings,
   totalObjects: state.totalObjects,
-  isFetching: state.isFetching,
   filterValues: state.filterValues,
 });
 

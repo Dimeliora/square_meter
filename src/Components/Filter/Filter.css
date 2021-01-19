@@ -1,7 +1,7 @@
 .filter {
   display: flex;
-  margin: 35px 0 30px;
-  padding: 30px 10px 44px;
+  margin: 35px 0 10px;
+  padding: 30px 10px 20px;
   box-shadow: 4px 7px 35px rgba(198, 211, 214, 0.3);
   background-color: #ffffff;
 }
@@ -20,7 +20,7 @@
   font-size: 16px;
   font-weight: 700;
   line-height: 1;
-  color: #000000;
+  color: #333333;
 }
 
 .filter__dropdown {
@@ -31,7 +31,7 @@
   font-size: 16px;
   font-weight: 500;
   line-height: 1;
-  color: #000000;
+  color: #333333;
   cursor: pointer;
 }
 
@@ -44,8 +44,6 @@
   -webkit-appearance: none;
   appearance: none;
   position: absolute;
-  left: -1000px;
-  top: -1000px;
   width: 0;
   height: 0;
 }
@@ -64,7 +62,7 @@
   font-size: 16px;
   font-weight: 700;
   line-height: 45px;
-  color: #000000;
+  color:#333333;
   text-align: center;
   cursor: pointer;
 }
@@ -115,7 +113,7 @@
   font-size: 16px;
   font-weight: 500;
   line-height: 45px;
-  color: #000000;
+  color:#333333;
 }
 
 .range__input--price {
@@ -126,51 +124,22 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 1;
-  color: #000000;
+  color:#333333;
 }
 
 .filter__buttons {
-  display: flex;
-  justify-content: space-between;
-}
-
-.filter__show {
-  width: 940px;
-  height: 78px;
-  border: none;
-  border-radius: 8px;
-  background-color: #dc0909;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 40px;
-  color: #ffffff;
-  transition: 0.1s background-color ease-in;
-}
-
-.filter__show:hover {
-  background-color: #eb4545;
-}
-
-.filter__show:active,
-.filter__show:focus {
-  outline: none;
-  background-color: #c23838;
-}
-
-.filter__show:disabled {
-  background-color: #eb7f7f;
-}
-
-.filter__show:disabled:hover {
-  background-color: #eb7f7f;
-  cursor: not-allowed;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
 }
 
 .filter__reset {
   position: relative;
+  margin-right: 30px;
+  padding: 0;
   padding-right: 24px;
   width: 210px;
-  height: 78px;
+  height: 50px;
   border: none;
   color: #b8b8b8;
   font-size: 16px;
@@ -192,7 +161,6 @@
 .filter__reset:active,
 .filter__reset:focus {
   outline: none;
-  transform: translateY(2px);
 }
 
 .filter__reset:after {
@@ -207,4 +175,43 @@
   background: url('../../Assets/images/icons/multiply-black.png') no-repeat;
   opacity: 0.2;
   transition: 0.1s opacity ease-in;
+}
+
+.filter__show {
+  position: absolute;
+  top: -100px;
+  width: 300px;
+  height: 50px;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+  background-color: #dc0909;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 40px;
+  color: #ffffff;
+  transition: background-color 0.1s, top 0.3s ease-in;
+}
+
+.filter__show--active {
+  top: 0;
+  transition: top 0.3s ease-in 0.3s;
+}
+
+.filter__show:hover {
+  background-color: #eb4545;
+}
+
+.filter__show:active,
+.filter__show:focus {
+  outline: none;
+  background-color: #c23838;
+}
+
+.filter__show:disabled {
+  background-color: #eb4545;
+}
+
+.filter__show:disabled:hover {
+  cursor: not-allowed;
 }

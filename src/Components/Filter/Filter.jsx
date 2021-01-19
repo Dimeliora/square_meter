@@ -1,16 +1,16 @@
-import React from "react";
+import React from 'react';
 
-import initialFilterValues from "../../Configs/initialFilterValues";
+import FilterSelect from './FilterSelect';
+import FilterCheckboxes from './FilterCheckboxes';
+import FilterRange from './FilterRange';
+import FilterControls from './FilterControls';
 
-import FilterSelect from "./FilterSelect";
-import FilterCheckboxes from "./FilterCheckboxes";
-import FilterRange from "./FilterRange";
-import FilterControls from "./FilterControls";
-
-import "./Filter.css";
+import './Filter.css';
 
 const Filter = (props) => {
   const {
+    isFetching,
+    isFilterApplied,
     filterSettings,
     filterValues,
     totalObjectsAmount,
@@ -33,22 +33,22 @@ const Filter = (props) => {
   const formRef = React.useRef();
 
   const onFormStateChange = (e) => {
-    const input = e.target;
-    onFilterValuesChange([input.name, input.value]);
+    const { name, value } = e.target;
+    onFilterValuesChange({ name, value });
   };
 
-  const onShowObjectsBtnClick = (e) => {
+  const onShowObjects = (e) => {
     e.preventDefault();
     onApplyFilter();
   };
 
-  const onResetFormBtnClick = () => {
+  const onResetForm = () => {
     formRef.current.reset();
-    onResetFilter(initialFilterValues);
+    onResetFilter();
   };
 
   return (
-    <form className="container p-0" id="filter-form" ref={formRef}>
+    <form className="container p-0" ref={formRef}>
       <div className="heading-1">Выбор квартир:</div>
       <div className="filter">
         <FilterSelect
@@ -84,9 +84,11 @@ const Filter = (props) => {
         />
       </div>
       <FilterControls
+        isFetching={isFetching}
+        isFilterApplied={isFilterApplied}
         objectsAmount={totalObjectsAmount}
-        onShowObjects={onShowObjectsBtnClick}
-        onResetForm={onResetFormBtnClick}
+        onShowObjects={onShowObjects}
+        onResetForm={onResetForm}
       />
     </form>
   );

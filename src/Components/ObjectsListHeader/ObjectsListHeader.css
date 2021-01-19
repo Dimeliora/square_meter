@@ -1,0 +1,115 @@
+.panels-wrapper {
+  margin-top: 30px;
+}
+
+.panels-sorter {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #959595;
+  font-weight: 500;
+}
+
+.panels-sorter__element {
+  flex-shrink: 0;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.panels-sorter__element:last-child {
+  margin-right: 0;
+}
+
+.panels-sorter__title {
+  display: inline-block;
+  position: relative;
+  padding-right: 20px;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.panels-sorter__title.sorter--active {
+  color: #dc0909;
+}
+
+.panels-sorter__title.sorter-down::after {
+  content: '\25BC';
+}
+
+.panels-sorter__title.sorter-up::after {
+  content: '\25B2';
+}
+
+.panels-sorter__title.sorter-down::after,
+.panels-sorter__title.sorter-up::after {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 15px;
+  height: 10px;
+  opacity: 0.45;
+}
+
+.panels-sorter__title.sorter--active.sorter-down::after,
+.panels-sorter__title.sorter--active.sorter-up::after {
+  opacity: 1;
+}
+
+.panels-sorter__title:hover {
+  cursor: pointer;
+  opacity: 0.8;
+  color: #dc0909;
+}
+
+.panels-sorter__title.no-sorter {
+  padding: 0;
+}
+
+.panels-sorter__title.no-sorter::after {
+  display: none;
+}
+
+.panels-sorter__title.no-sorter:hover {
+  color: #959595;
+  cursor: default;
+  opacity: 1;
+}
+
+.panels-sorter__item-num {
+  width: 120px;
+}
+
+.panels-sorter__name {
+  width: 160px;
+}
+
+.panels-sorter__block {
+  width: 70px;
+}
+
+.panels-sorter__floor {
+  width: 70px;
+}
+
+.panels-sorter__rooms {
+  width: 70px;
+}
+
+.panels-sorter__sq {
+  width: 80px;
+}
+
+.panels-sorter__price-per-m {
+  width: 100px;
+}
+
+.panels-sorter__price {
+  width: 100px;
+}
+
+.panels-sorter__favourite {
+  width: 100px;
+}

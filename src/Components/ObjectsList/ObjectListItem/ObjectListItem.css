@@ -1,0 +1,113 @@
+.panel,
+a.panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 73px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 10px;
+  box-shadow: 4px 7px 35px rgba(198, 211, 214, 0.3);
+  border-radius: 8px;
+  background-color: #ffffff;
+  text-align: center;
+  color:#333333;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.panel:hover,
+a.panel:hover {
+  cursor: pointer;
+  text-decoration: none;
+  transform: translateY(-3px);
+  box-shadow: 4px 7px 35px #c6d3d6;
+}
+
+.panel.panel--no-hover:hover,
+a.panel.panel--no-hover:hover {
+  cursor: default;
+  transform: none;
+  box-shadow: 4px 7px 35px rgba(198, 211, 214, 0.3);
+}
+
+.panel__item-num {
+  width: 120px;
+}
+
+.panel__name {
+  width: 160px;
+}
+
+.panel__block {
+  width: 70px;
+}
+
+.panel__floor {
+  width: 70px;
+}
+
+.panel__rooms {
+  width: 70px;
+}
+
+.panel__sq {
+  width: 80px;
+}
+
+.panel__price-per-m {
+  width: 100px;
+}
+
+.panel__price {
+  color: #dc0909;
+  width: 100px;
+}
+
+.panel__seller {
+  width: 120px;
+}
+
+.panel__favourite {
+  width: 100px;
+}
+
+.panel__favourite-btn {
+  border: none;
+  background-color: transparent;
+  color: #ececec;
+  font-size: 24px;
+}
+
+.panel__favourite-btn:hover {
+  color: #dc0909;
+}
+
+.panel__favourite-btn--active {
+  color: #dc0909;
+}
+
+.panel__favourite-btn--active:hover {
+  color: #ff0000;
+  opacity: 0.8;
+}
+
+.card__like {
+  cursor: pointer;
+  font-size: 24px;
+  color: #ececec;
+}
+
+.card__like:hover {
+  color: #ff0000;
+}
+
+.card__like--active {
+  color: #dc0909;
+}
+
+.card__like--active:hover {
+  opacity: 0.8;
+}

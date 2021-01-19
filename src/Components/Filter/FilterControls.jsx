@@ -1,21 +1,36 @@
-const FilterControls = ({ objectsAmount = 0, onShowObjects, onResetForm }) => {
+import cn from 'classnames';
+
+import ButtonLoader from '../Preloaders/ButtonLoader';
+
+const FilterControls = (props) => {
+  const {
+    isFetching = false,
+    isFilterApplied = true,
+    objectsAmount = 0,
+    onShowObjects = () => {},
+    onResetForm = () => {},
+  } = props;
+
   const showBtnLabel = objectsAmount
     ? `Показать объекты (${objectsAmount})`
-    : "Объектов, удовлетворяющих условиям не найдено";
+    : 'Ничего не найдено';
 
-  const disableShowBtn = objectsAmount === 0;
+  const disableShowBtn = isFetching || objectsAmount === 0;
 
   return (
     <div className="filter__buttons">
+      <button className="filter__reset" type="reset" onClick={onResetForm}>
+        Сбросить фильтр
+      </button>
+
       <button
-        className="filter__show"
+        className={cn('filter__show', {
+          'filter__show--active': !isFilterApplied,
+        })}
         disabled={disableShowBtn}
         onClick={onShowObjects}
       >
-        {showBtnLabel}
-      </button>
-      <button className="filter__reset" type="reset" onClick={onResetForm}>
-        Сбросить фильтр
+        {isFetching ? <ButtonLoader /> : showBtnLabel}
       </button>
     </div>
   );
