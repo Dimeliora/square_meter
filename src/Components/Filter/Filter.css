@@ -41,16 +41,9 @@
 }
 
 .rooms__checkbox {
+  position: absolute;
   -webkit-appearance: none;
   appearance: none;
-  position: absolute;
-  width: 0;
-  height: 0;
-}
-
-.rooms__checkbox:checked + .rooms__btn {
-  background-color: #e51414;
-  color: #fff;
 }
 
 .rooms__btn {
@@ -62,7 +55,7 @@
   font-size: 16px;
   font-weight: 700;
   line-height: 45px;
-  color:#333333;
+  color: #333333;
   text-align: center;
   cursor: pointer;
 }
@@ -75,14 +68,14 @@
   opacity: 0.8;
 }
 
-.rooms__btn--active {
-  background-color: #e51414;
-  color: #fff;
-}
-
 .range__wrapper {
   margin-bottom: 0;
   display: flex;
+}
+
+.rooms__checkbox--active + .rooms__btn {
+  background-color: #e51414;
+  color: #ffffff;
 }
 
 .range {
@@ -113,7 +106,7 @@
   font-size: 16px;
   font-weight: 500;
   line-height: 45px;
-  color:#333333;
+  color: #333333;
 }
 
 .range__input--price {
@@ -124,7 +117,7 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 1;
-  color:#333333;
+  color: #333333;
 }
 
 .filter__buttons {
@@ -164,7 +157,7 @@
 }
 
 .filter__reset:after {
-  content: '';
+  content: "";
   width: 14px;
   height: 14px;
   display: block;
@@ -172,7 +165,7 @@
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
-  background: url('../../Assets/images/icons/multiply-black.png') no-repeat;
+  background: url("../../Assets/images/icons/multiply-black.png") no-repeat;
   opacity: 0.2;
   transition: 0.1s opacity ease-in;
 }

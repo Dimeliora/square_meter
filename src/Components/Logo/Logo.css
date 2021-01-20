@@ -1,16 +1,16 @@
 .logo-wrapper {
+  display: block;
   padding: 20px 0;
   text-align: center;
-  display: block;
 }
 
 .logo {
   display: inline-block;
   margin: 0 auto;
+  padding: 20px 45px 16px;
+  background-color: #ffffff;
   font-family: 'Oswald', sans-serif;
   transform: skewX(-10deg);
-  background-color: #fff;
-  padding: 20px 45px 16px;
 }
 
 .logo:hover {
@@ -18,16 +18,16 @@
 }
 
 .logo__title {
-  color: #333333;
   font-size: 48px;
   font-weight: 700;
   line-height: 40px;
+  color: #333333;
 }
 
 .logo__subtitle {
-  color: #dc0909;
   font-size: 26px;
   font-weight: 700;
   line-height: 40px;
+  color: #dc0909;
   letter-spacing: 2.86px;
 }

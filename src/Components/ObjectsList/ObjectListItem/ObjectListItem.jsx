@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import cn from 'classnames';
 
 import priceNormalize from '../../../Utils/priceNormalize';
 
@@ -6,16 +7,27 @@ import './ObjectListItem.css';
 
 const ObjectListItem = (props) => {
   const {
-    id,
-    scu,
-    complex_name: complexName,
-    square,
-    price_sq_m: priceSqMin,
-    price_total: priceTotal,
-    building,
-    floor,
-    rooms,
+    itemData = {},
+    isFavourite = false,
+    onToggleFavObject = () => {},
   } = props;
+
+  const {
+    id = '',
+    scu = '',
+    complex_name: complexName = '',
+    square = '',
+    price_sq_m: priceSqMin = '',
+    price_total: priceTotal = '',
+    building = '',
+    floor = '',
+    rooms = '',
+  } = itemData;
+
+  const onFavouriteClick = (e) => {
+    e.preventDefault();
+    onToggleFavObject(itemData);
+  };
 
   return (
     <Link to={`/objects/${id}`} className="panel">
@@ -32,7 +44,10 @@ const ObjectListItem = (props) => {
       </div>
       <div className="panel__price">{priceNormalize.format(priceTotal)} ₽</div>
       <div className="panel__favourite">
-        <div className="card__like">
+        <div
+          className={cn('card__like', { 'card__like--active': isFavourite })}
+          onClick={onFavouriteClick}
+        >
           <i className="fas fa-heart"></i>
         </div>
       </div>

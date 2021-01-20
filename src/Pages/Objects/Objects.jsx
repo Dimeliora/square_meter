@@ -3,6 +3,7 @@ import React from 'react';
 import initialFilterValues from '../../Configs/initialFilterValues';
 
 import Preloader from '../../Components/Preloaders/Loader';
+import Heading from '../../Components/Heading';
 import Filter from '../../Components/Filter/Filter';
 import ObjectsListHeader from '../../Components/ObjectsListHeader';
 import ObjectsList from '../../Components/ObjectsList';
@@ -15,10 +16,12 @@ const Objects = (props) => {
     filterSettings,
     filterValues,
     totalObjects,
+    favouriteObjects,
     getInitData,
     setFilterInputValue,
     setInitialFilterValues,
     getFilteredData,
+    toggleObjectAsFavourite,
   } = props;
 
   const [isFilterApplied, setIsFilterApplied] = React.useState(true);
@@ -57,15 +60,18 @@ const Objects = (props) => {
     setIsFilterApplied(true);
   };
 
-  const onSortObjects = ({ sorterName, isCurrentAscending }) => {
-    setSortParams((state) => ({
-      sorterName,
-      isAscending:
-        sorterName === state.sorterName
-          ? !state.isAscending
-          : isCurrentAscending,
-    }));
-  };
+  const onSortObjects = React.useCallback(
+    ({ sorterName, isCurrentAscending }) => {
+      setSortParams((state) => ({
+        sorterName,
+        isAscending:
+          sorterName === state.sorterName
+            ? !state.isAscending
+            : isCurrentAscending,
+      }));
+    },
+    [],
+  );
 
   const sortObjectsToShow = (objects, isAscending, sorterName) => {
     if (!sorterName) return objects;
@@ -88,7 +94,8 @@ const Objects = (props) => {
   const totalObjectsAmount = totalObjects.length;
 
   return (
-    <div className="objects-wrapper">
+    <div className="container objects-wrapper">
+      <Heading>Выбор квартир:</Heading>
       <Filter
         isFetching={isFetching}
         isFilterApplied={isFilterApplied}
@@ -104,7 +111,11 @@ const Objects = (props) => {
         activeSorter={sorterName}
         isAscending={isAscending}
       />
-      <ObjectsList totalObjects={sortedObjectsToShow} />
+      <ObjectsList
+        totalObjects={sortedObjectsToShow}
+        favouriteObjects={favouriteObjects}
+        onToggleFavObject={toggleObjectAsFavourite}
+      />
     </div>
   );
 };

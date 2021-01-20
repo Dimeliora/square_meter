@@ -1,14 +1,10 @@
-.panels-wrapper {
-  margin-top: 30px;
-}
-
 .panels-sorter {
+  margin-top: 30px;
+  padding: 0 20px;
   display: flex;
   justify-content: space-between;
-  padding-left: 20px;
-  padding-right: 20px;
-  color: #959595;
   font-weight: 500;
+  color: #959595;
 }
 
 .panels-sorter__element {
@@ -27,6 +23,7 @@
   padding-right: 20px;
   font-size: 12px;
   line-height: 1;
+  user-select: none;
 }
 
 .panels-sorter__title.sorter--active {
@@ -34,22 +31,22 @@
 }
 
 .panels-sorter__title.sorter-down::after {
-  content: '\25BC';
+  content: "\25BC";
 }
 
 .panels-sorter__title.sorter-up::after {
-  content: '\25B2';
+  content: "\25B2";
 }
 
 .panels-sorter__title.sorter-down::after,
 .panels-sorter__title.sorter-up::after {
   display: block;
+  width: 15px;
+  height: 10px;
   position: absolute;
   top: 50%;
   right: 0;
   transform: translateY(-50%);
-  width: 15px;
-  height: 10px;
   opacity: 0.45;
 }
 
@@ -59,9 +56,9 @@
 }
 
 .panels-sorter__title:hover {
-  cursor: pointer;
-  opacity: 0.8;
   color: #dc0909;
+  opacity: 0.8;
+  cursor: pointer;
 }
 
 .panels-sorter__title.no-sorter {
@@ -74,8 +71,8 @@
 
 .panels-sorter__title.no-sorter:hover {
   color: #959595;
-  cursor: default;
   opacity: 1;
+  cursor: default;
 }
 
 .panels-sorter__item-num {

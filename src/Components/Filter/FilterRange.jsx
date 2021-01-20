@@ -1,3 +1,4 @@
+import React from 'react';
 import cn from 'classnames';
 
 import priceNormalize from '../../Utils/priceNormalize';
@@ -12,7 +13,7 @@ const FilterRange = (props) => {
     name = '',
     unitType = '',
     classname = '',
-    onInputChange,
+    onInputChange = () => {},
   } = props;
 
   return (
@@ -51,4 +52,4 @@ const FilterRange = (props) => {
   );
 };
 
-export default FilterRange;
+export default React.memo(FilterRange);

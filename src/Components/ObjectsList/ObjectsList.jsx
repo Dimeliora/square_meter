@@ -2,16 +2,28 @@ import ObjectListItem from './ObjectListItem';
 
 import './ObjectsList.css';
 
-const ObjectsList = ({ totalObjects = [] }) => {
-  const objectsListItems = totalObjects.map((object) => (
-    <ObjectListItem key={object.id} {...object} />
-  ));
+const ObjectsList = (props) => {
+  const {
+    totalObjects = [],
+    favouriteObjects = [],
+    onToggleFavObject = () => {},
+  } = props;
 
-  return (
-    <div className="objects-list-wrapper">
-      <div className="container p-0">{objectsListItems}</div>
-    </div>
-  );
+  const objectsListItems = totalObjects.map((object) => {
+    const id = object.id;
+    const isFavourite = favouriteObjects.some((object) => object.id === id);
+
+    return (
+      <ObjectListItem
+        key={id}
+        itemData={object}
+        isFavourite={isFavourite}
+        onToggleFavObject={onToggleFavObject}
+      />
+    );
+  });
+
+  return <div className="objects-list-wrapper">{objectsListItems}</div>;
 };
 
 export default ObjectsList;

@@ -6,7 +6,7 @@ import Footer from '../Footer';
 
 import ObjectsContainer from '../../Pages/Objects/ObjectsContainer';
 import ChosenObjectContainer from '../../Pages/ChosenObject/ChosenObjectContainer';
-import Favs from '../../Pages/Favs';
+import FavouritesContainer from '../../Pages/Favourites/FavouritesContainer';
 import Bids from '../../Pages/Bids';
 
 import './App.css';
@@ -20,7 +20,7 @@ const App = () => {
         <Switch>
           <Route exact path="/objects" component={ObjectsContainer} />
           <Route path="/objects/:id" component={ChosenObjectContainer} />
-          <Route path="/favs" component={Favs} />
+          <Route path="/favoirites" component={FavouritesContainer} />
           <Route path="/bids" component={Bids} />
         </Switch>
       </div>

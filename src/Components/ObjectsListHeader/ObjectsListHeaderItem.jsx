@@ -17,7 +17,7 @@ const ObjectsListHeaderItem = (props) => {
   const onSortByItem = () => {
     isSortable && onSortObjects({ sorterName, isCurrentAscending });
   };
-  
+
   return (
     <div className={cn('panels-sorter__element', classname)}>
       <div

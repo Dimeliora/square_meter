@@ -1,19 +1,21 @@
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 import {
   getInitData,
   setFilterInputValue,
   setInitialFilterValues,
   getFilteredData,
-} from '../../Store/ActionCreators/ObjectsActionCreators';
+} from "../../Store/ActionCreators/ObjectsActionCreators";
+import { toggleObjectAsFavourite } from "../../Store/ActionCreators/FavouritesActionCreators";
 
-import Objects from './Objects';
+import Objects from "./Objects";
 
 const mapStateToProps = (state) => ({
-  isFetching: state.isFetching,
-  filterSettings: state.filterSettings,
-  totalObjects: state.totalObjects,
-  filterValues: state.filterValues,
+  isFetching: state.objects.isFetching,
+  filterSettings: state.objects.filterSettings,
+  totalObjects: state.objects.totalObjects,
+  filterValues: state.objects.filterValues,
+  favouriteObjects: state.favourites.favourites,
 });
 
 const ObjectsContainer = connect(mapStateToProps, {
@@ -21,6 +23,7 @@ const ObjectsContainer = connect(mapStateToProps, {
   setFilterInputValue,
   setInitialFilterValues,
   getFilteredData,
+  toggleObjectAsFavourite,
 })(Objects);
 
 export default ObjectsContainer;

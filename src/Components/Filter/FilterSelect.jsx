@@ -1,9 +1,7 @@
+import React from 'react';
+
 const FilterSelect = (props) => {
-  const {
-    value = '',
-    options = [],
-    onInputChange,
-  } = props;
+  const { value = '', options = [], onInputChange = () => {} } = props;
 
   const selectOptionElements = options.map((el) => (
     <option key={el} value={el}>
@@ -27,4 +25,4 @@ const FilterSelect = (props) => {
   );
 };
 
-export default FilterSelect;
+export default React.memo(FilterSelect);

@@ -17,7 +17,7 @@ const Header = () => {
             <i className="fas fa-laptop-house"></i> Выбор квартир
           </NavLink>
           <NavLink
-            to="/favs"
+            to="/favoirites"
             className="top-panel__link mr-5"
             activeClassName="link--active"
           >

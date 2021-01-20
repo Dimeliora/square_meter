@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.1",
-    "@testing-library/jest-dom": "^5.11.4",
+    "@fortawesome/fontawesome-free": "^5.15.2",
+    "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
-    "bootstrap": "^4.5.3",
+    "bootstrap": "^4.6.0",
     "classnames": "^2.2.6",
     "query-string": "^6.13.8",
     "react": "^17.0.1",
@@ -16,6 +16,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "redux": "^4.0.5",
+    "redux-localstorage-simple": "^2.3.1",
     "redux-thunk": "^2.3.0"
   },
   "scripts": {

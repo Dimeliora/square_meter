@@ -9,33 +9,40 @@ import './Filter.css';
 
 const Filter = (props) => {
   const {
-    isFetching,
-    isFilterApplied,
-    filterSettings,
-    filterValues,
-    totalObjectsAmount,
-    onFilterValuesChange,
-    onApplyFilter,
-    onResetFilter,
+    isFetching = false,
+    isFilterApplied = true,
+    filterSettings = {},
+    filterValues = {},
+    totalObjectsAmount = 0,
+    onFilterValuesChange = () => {},
+    onApplyFilter = () => {},
+    onResetFilter = () => {},
   } = props;
 
   const {
-    squareMin,
-    squareMax,
-    priceMin,
-    priceMax,
-    complexNames,
-    roomValues,
+    squareMin = '',
+    squareMax = '',
+    priceMin = '',
+    priceMax = '',
+    complexNames = '',
+    roomValues = [],
   } = filterSettings;
 
-  const { complex, rooms, sqmin, sqmax, pricemin, pricemax } = filterValues;
+  const {
+    complex = '',
+    rooms = [],
+    sqmin = '',
+    sqmax = '',
+    pricemin = '',
+    pricemax = '',
+  } = filterValues;
 
   const formRef = React.useRef();
 
-  const onFormStateChange = (e) => {
+  const onFormStateChange = React.useCallback((e) => {
     const { name, value } = e.target;
     onFilterValuesChange({ name, value });
-  };
+  }, []);
 
   const onShowObjects = (e) => {
     e.preventDefault();
@@ -48,8 +55,7 @@ const Filter = (props) => {
   };
 
   return (
-    <form className="container p-0" ref={formRef}>
-      <div className="heading-1">Выбор квартир:</div>
+    <form ref={formRef}>
       <div className="filter">
         <FilterSelect
           value={complex}
