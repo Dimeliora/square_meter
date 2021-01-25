@@ -1,0 +1,40 @@
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(70, 131, 180, 0.5);
+}
+
+.modal {
+  display: block;
+  width: 600px;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+}
+
+.modal__close {
+  display: block;
+  padding: 5px 15px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  border: none;
+  background-color: #3b3b3b;
+  font-size: 18px;
+  color: #fff;
+  transition: 0.1s background-color ease-in;
+}
+
+.modal__close:hover {
+  background-color: #181818;
+}
+
+.modal__close:active {
+  background-color: #000000;
+}

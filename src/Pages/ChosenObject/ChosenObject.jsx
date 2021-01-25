@@ -1,13 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import priceNormalize from "../../Utils/priceNormalize";
+import priceNormalize from '../../Utils/priceNormalize';
 
-import Preloader from "../../Components/Preloaders/Loader";
-import Heading from "../../Components/Heading";
-import SingleObject from "../../Components/SingleObject";
+import Preloader from '../../Components/Preloaders/Loader';
+import Heading from '../../Components/Heading';
+import SingleObject from '../../Components/SingleObject';
+import Modal from '../../Components/Modal';
+import BidForm from '../../Components/BidForm';
 
-import "./ChosenObject.css";
+import './ChosenObject.css';
 
 const ChosenObject = (props) => {
   const {
@@ -20,6 +22,8 @@ const ChosenObject = (props) => {
 
   const objectId = params.id;
 
+  const [showModal, setShowModal] = React.useState(false);
+
   React.useEffect(() => {
     getChosenObject(objectId);
   }, [objectId, getChosenObject]);
@@ -27,7 +31,16 @@ const ChosenObject = (props) => {
   if (!chosenObject) return <Preloader />;
 
   const { title, square, price_total: priceTotal } = chosenObject;
+
   const isFavourite = favouriteObjects.some((object) => object.id === objectId);
+
+  const onCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const onShowModal = () => {
+    setShowModal(true);
+  };
 
   return (
     <div className="container p-0 pt-5">
@@ -39,6 +52,7 @@ const ChosenObject = (props) => {
         objectData={chosenObject}
         isFavourite={isFavourite}
         toggleObjectAsFavourite={toggleObjectAsFavourite}
+        onBook={onShowModal}
       />
 
       <div className="back-to-results">
@@ -46,6 +60,12 @@ const ChosenObject = (props) => {
           ← Вернуться к результатам поиска
         </Link>
       </div>
+
+      {showModal && (
+        <Modal onClose={onCloseModal}>
+          <BidForm objectInfo={chosenObject} />
+        </Modal>
+      )}
     </div>
   );
 };

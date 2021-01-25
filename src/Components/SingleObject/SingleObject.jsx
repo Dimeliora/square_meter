@@ -9,6 +9,7 @@ const SingleObject = (props) => {
     objectData = {},
     isFavourite = false,
     toggleObjectAsFavourite = () => {},
+    onBook = () => {},
   } = props;
 
   const {
@@ -96,7 +97,7 @@ const SingleObject = (props) => {
             </div>
           </div>
         </div>
-        <button className="button-order" id="book-button">
+        <button className="button-order" onClick={onBook}>
           Забронировать
         </button>
       </div>

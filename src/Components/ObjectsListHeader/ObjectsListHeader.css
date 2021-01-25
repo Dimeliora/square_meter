@@ -30,24 +30,22 @@
   color: #dc0909;
 }
 
-.panels-sorter__title.sorter-down::after {
-  content: "\25BC";
-}
-
-.panels-sorter__title.sorter-up::after {
-  content: "\25B2";
-}
-
 .panels-sorter__title.sorter-down::after,
 .panels-sorter__title.sorter-up::after {
+  content: '\25BC';
   display: block;
   width: 15px;
   height: 10px;
   position: absolute;
   top: 50%;
   right: 0;
-  transform: translateY(-50%);
+  transform: translateY(-50%) rotateX(180deg);
   opacity: 0.45;
+  transition: transform 0.1s ease-in-out;
+}
+
+.panels-sorter__title.sorter-down::after {
+  transform: translateY(-50%) rotateX(0deg);
 }
 
 .panels-sorter__title.sorter--active.sorter-down::after,
