@@ -1,38 +1,49 @@
-.top-panel {
+.header {
   height: 58px;
-  padding: 0 15px;
+  width: 100%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
+
   background-color: rgba(0, 0, 0, 0.7);
+
   font-size: 16px;
   font-weight: 700;
   line-height: 1;
   color: #ffffff;
 }
 
-.top-panel__container {
+.header__container {
   max-width: 1170px;
   height: 100%;
   margin: 0 auto;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.top-panel__link {
-  background-color: transparent;
+.header__link {
   border: none;
+
+  background-color: transparent;
+
   color: #ffffff;
+  
   transition: color 0.3s;
 }
 
-.top-panel__link i {
+.header__link i {
   margin-right: 10px;
 }
 
-.top-panel__link:hover {
+.header__link:hover {
   color: #dfd6b1;
   text-decoration: none;
 }
 
-.top-panel__link.link--active {
+.header__link.link--active {
   color: #ffdd56;
 }

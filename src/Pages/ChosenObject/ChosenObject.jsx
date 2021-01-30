@@ -43,7 +43,7 @@ const ChosenObject = (props) => {
   };
 
   return (
-    <div className="container p-0 pt-5">
+    <div className="container content-wrapper">
       <Heading>
         {title}, {square} м<sup>2</sup> за {priceNormalize.format(priceTotal)} ₽
       </Heading>

@@ -1,7 +1,5 @@
 import ObjectListItem from './ObjectListItem';
 
-import './ObjectsList.css';
-
 const ObjectsList = (props) => {
   const {
     totalObjects = [],

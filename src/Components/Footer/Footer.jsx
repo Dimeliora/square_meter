@@ -4,12 +4,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="container">
-        <p>
-          Учебный проект школы <a href="/">ВебКадеми.рф</a>с
-          курса{' '}
-          <a href="/">JavaScript разработка</a>.
-          Проект выполнил <a href="/">Di Meliora</a>.
-        </p>
+        <p>Учебный проект школы ВебКадеми.рф с курса "JavaScript разработка"</p>
       </div>
     </footer>
   );

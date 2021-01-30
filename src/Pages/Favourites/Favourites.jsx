@@ -1,7 +1,7 @@
-import "./Favourites.css";
+import './Favourites.css';
 
-import Heading from "../../Components/Heading";
-import ObjectsList from "../../Components/ObjectsList";
+import Heading from '../../Components/Heading';
+import ObjectsList from '../../Components/ObjectsList';
 
 const Favourites = (props) => {
   const { favouriteObjects, toggleObjectAsFavourite } = props;
@@ -26,7 +26,7 @@ const Favourites = (props) => {
   );
 
   return (
-    <div className="container">
+    <div className="container content-wrapper">
       {areFavouriteObjects ? favouritesContent : noFavouritesNotice}
     </div>
   );

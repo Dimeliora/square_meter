@@ -1,6 +1,5 @@
-.sticky-footer {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.app-wrapper {
+  min-height: 100vh;
+  
+  position: relative;
 }

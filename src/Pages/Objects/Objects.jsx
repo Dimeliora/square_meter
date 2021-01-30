@@ -8,8 +8,6 @@ import Filter from '../../Components/Filter/Filter';
 import ObjectsListHeader from '../../Components/ObjectsListHeader';
 import ObjectsList from '../../Components/ObjectsList';
 
-import './Objects.css';
-
 const Objects = (props) => {
   const {
     isFetching,
@@ -94,7 +92,7 @@ const Objects = (props) => {
   const totalObjectsAmount = totalObjects.length;
 
   return (
-    <div className="container objects-wrapper">
+    <div className="container content-wrapper">
       <Heading>Выбор квартир:</Heading>
       <Filter
         isFetching={isFetching}

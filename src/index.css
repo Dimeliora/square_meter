@@ -7,7 +7,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #edf1f5;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 #root {
@@ -16,4 +16,13 @@ body {
 
 .container {
   max-width: 1170px;
+}
+
+.content-wrapper {
+  padding: 234px 0 90px;
+  min-height: 100vh;
+}
+
+.relative {
+  position: relative;
 }

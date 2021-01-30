@@ -4,6 +4,7 @@ import Header from '../Header';
 import Logo from '../Logo';
 import Footer from '../Footer';
 
+import Home from '../../Pages/Home';
 import ObjectsContainer from '../../Pages/Objects/ObjectsContainer';
 import ChosenObjectContainer from '../../Pages/ChosenObject/ChosenObjectContainer';
 import FavouritesContainer from '../../Pages/Favourites/FavouritesContainer';
@@ -13,17 +14,16 @@ import './App.css';
 
 const App = () => {
   return (
-    <div className="sticky-footer">
-      <div className="content-wrapper">
-        <Header />
-        <Logo />
-        <Switch>
-          <Route exact path="/objects" component={ObjectsContainer} />
-          <Route path="/objects/:id" component={ChosenObjectContainer} />
-          <Route path="/favoirites" component={FavouritesContainer} />
-          <Route path="/bids" component={Bids} />
-        </Switch>
-      </div>
+    <div className="app-wrapper">
+      <Header />
+      <Logo />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/objects" component={ObjectsContainer} />
+        <Route path="/objects/:id" component={ChosenObjectContainer} />
+        <Route path="/favoirites" component={FavouritesContainer} />
+        <Route path="/bids" component={Bids} />
+      </Switch>
       <Footer />
     </div>
   );
