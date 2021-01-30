@@ -1,2 +1,2 @@
 # square_meter
-Simple SPA for estate agency
+Simple part of SPA. Kind of a service for estate agency
