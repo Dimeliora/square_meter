@@ -1,16 +1,15 @@
 import { connect } from "react-redux";
 
-import { getChosenObject } from "../../Store/ActionCreators/ObjectsActionCreators";
 import { toggleObjectAsFavourite } from "../../Store/ActionCreators/FavouritesActionCreators";
 
-import ChosenObject from "./ChosenObject";
+import Favourites from "../../Pages/Favourites";
 
 const mapStateToProps = (state) => ({
-  chosenObject: state.objects.chosenObject,
   favouriteObjects: state.favourites.favourites,
 });
 
-export default connect(mapStateToProps, {
-  getChosenObject,
+const FavouritesContainer = connect(mapStateToProps, {
   toggleObjectAsFavourite,
-})(ChosenObject);
+})(Favourites);
+
+export default FavouritesContainer;

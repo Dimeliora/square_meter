@@ -3,6 +3,8 @@ import cn from 'classnames';
 
 import priceNormalize from '../../../Utils/priceNormalize';
 
+import { ReactComponent as HeartLogo } from '../../../Assets/icons/heart-solid.svg';
+
 import './ObjectListItem.css';
 
 const ObjectListItem = (props) => {
@@ -48,7 +50,7 @@ const ObjectListItem = (props) => {
           className={cn('card__like', { 'card__like--active': isFavourite })}
           onClick={onFavouriteClick}
         >
-          <i className="fas fa-heart"></i>
+          <HeartLogo className="panel__favourite-icon" />
         </div>
       </div>
     </Link>

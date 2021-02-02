@@ -1,14 +1,14 @@
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
 import {
   getInitData,
   setFilterInputValue,
   setInitialFilterValues,
   getFilteredData,
-} from "../../Store/ActionCreators/ObjectsActionCreators";
-import { toggleObjectAsFavourite } from "../../Store/ActionCreators/FavouritesActionCreators";
+} from '../../Store/ActionCreators/ObjectsActionCreators';
+import { toggleObjectAsFavourite } from '../../Store/ActionCreators/FavouritesActionCreators';
 
-import Objects from "./Objects";
+import Objects from '../../Pages/Objects';
 
 const mapStateToProps = (state) => ({
   isFetching: state.objects.isFetching,

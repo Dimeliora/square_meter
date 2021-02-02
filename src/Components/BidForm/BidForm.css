@@ -1,82 +1,83 @@
-.modal__header {
+.bids-modal-header {
   padding: 15px 20px 15px;
 }
 
-.modal__title {
+.bids-modal-header__title {
   margin-bottom: 5px;
   font-size: 28px;
   font-weight: 700;
 }
 
-.modal__details {
+.bids-modal-header__details {
   font-size: 22px;
 }
 
-.modal__details-art {
+.bids-modal-header__details-art {
   font-size: 14px;
   font-weight: 500;
   color: #959595;
 }
 
-.modal__form-content {
-  padding: 15px 20px;
+.bids-modal-form {
+  padding: 15px 20px 100px 20px;
+  position: relative;
 }
 
-.formgroup {
-  margin-bottom: 25px;
-}
-
-.formgroup--checkbox {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-.formgroup--checkbox input {
-  margin-top: 7px;
-  margin-right: 15px;
-}
-.modal__form-input-label {
-  display: block;
-}
-
-.modal__form-input {
+.bids-modal-form__input {
   display: block;
   width: 100%;
   padding: 10px 15px;
   border: 1px solid #a7a7a7;
+  border-radius: 4px;
+  transition: border-color 0.3s ease-in-out;
 }
 
-.modal__submit {
+.bids-modal-form__policy {
+  position: relative;
+}
+
+.bids-modal-form__policy-label {
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.bids-modal-form__submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 65px;
+
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
   border: none;
+
   background-color: #dc0909;
+
   font-size: 22px;
   font-weight: 700;
-  line-height: 1;
   color: #fff;
   text-align: center;
+
   cursor: pointer;
   transition: 0.1s background-color ease-in;
 }
 
-.modal__submit:hover {
+.bids-modal-form__submit:hover {
   background-color: #f05858;
 }
 
-.modal__submit:active {
+.bids-modal-form__submit:active {
   background-color: #a02424;
 }
 
-.modal__submit:disabled {
+.bids-modal-form__submit:disabled {
   background-color: #eb9696;
+  cursor: not-allowed;
 }
 
-.modal__submit:disabled:hover {
+.bids-modal-form__submit:disabled:hover {
   background-color: #eb9696;
-}
-
-.policy-text {
-  font-size: 12px;
 }

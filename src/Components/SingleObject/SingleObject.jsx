@@ -2,6 +2,8 @@ import cn from 'classnames';
 
 import priceNormalize from '../../Utils/priceNormalize';
 
+import { ReactComponent as HeartLogo } from '../../Assets/icons/heart-solid.svg';
+
 import './SingleObject.css';
 
 const SingleObject = (props) => {
@@ -9,7 +11,7 @@ const SingleObject = (props) => {
     objectData = {},
     isFavourite = false,
     toggleObjectAsFavourite = () => {},
-    onBook = () => {},
+    onReserve = () => {},
   } = props;
 
   const {
@@ -49,7 +51,7 @@ const SingleObject = (props) => {
             })}
             onClick={onToggleFavourite}
           >
-            <i className="fas fa-heart"></i>
+            <HeartLogo className="button-favourite-icon" />
             <span>{isFavourite ? 'В избранном' : 'В избранное'}</span>
           </button>
         </div>
@@ -97,7 +99,7 @@ const SingleObject = (props) => {
             </div>
           </div>
         </div>
-        <button className="button-order" onClick={onBook}>
+        <button className="button-order" onClick={onReserve}>
           Забронировать
         </button>
       </div>

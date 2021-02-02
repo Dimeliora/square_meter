@@ -73,6 +73,10 @@ a.panel.panel--no-hover:hover {
   width: 100px;
 }
 
+.panel__favourite-icon {
+  height: 26px;
+}
+
 .card__like {
   font-size: 24px;
   color: #ececec;

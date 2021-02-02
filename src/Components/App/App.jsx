@@ -5,9 +5,9 @@ import Logo from '../Logo';
 import Footer from '../Footer';
 
 import Home from '../../Pages/Home';
-import ObjectsContainer from '../../Pages/Objects/ObjectsContainer';
-import ChosenObjectContainer from '../../Pages/ChosenObject/ChosenObjectContainer';
-import FavouritesContainer from '../../Pages/Favourites/FavouritesContainer';
+import ObjectsContainer from '../../Containers/PageContainers/ObjectsContainer';
+import ChosenObjectContainer from '../../Containers/PageContainers/ChosenObjectContainer';
+import FavouritesContainer from '../../Containers/PageContainers/FavouritesContainer';
 import Bids from '../../Pages/Bids';
 
 import './App.css';

@@ -9,19 +9,19 @@ const Modal = ({ children, onClose }) => {
 
   React.useEffect(() => {
     document.body.append(portal);
-    document.body.style.overflow = 'hidden';
+    document.body.setAttribute('style', 'overflow: hidden;');
 
     return () => {
-      document.body.style.overflow = '';
+      document.body.removeAttribute('style');
       document.body.removeChild(portal);
     };
   });
 
   return ReactDOM.createPortal(
-    <div className="modal-wrapper" onClick={onClose}>
-      <div className="modal" onClick={(e) => e.stopPropagation()}>
-        <button className="modal__close" onClick={onClose}>
-          Закрыть
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-window" onClick={(e) => e.stopPropagation()}>
+        <button className="modal-close" onClick={onClose}>
+          &#128939;
         </button>
         {children}
       </div>

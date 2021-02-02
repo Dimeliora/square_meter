@@ -18,3 +18,9 @@
 .back-to-results__btn:hover {
   text-decoration: none;
 }
+
+.reservation-succeed-notice {
+  padding: 40px;
+  font-size: 18px;
+  text-align: center;
+}

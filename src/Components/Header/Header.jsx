@@ -1,5 +1,9 @@
 import { NavLink } from 'react-router-dom';
 
+import { ReactComponent as LaptopLogo } from '../../Assets/icons/laptop-house-solid.svg';
+import { ReactComponent as HeartLogo } from '../../Assets/icons/heart-solid.svg';
+import { ReactComponent as FileLogo } from '../../Assets/icons/file-alt-regular.svg';
+
 import './Header.css';
 
 const Header = () => {
@@ -14,21 +18,24 @@ const Header = () => {
             className="header__link mr-5"
             activeClassName="link--active"
           >
-            <i className="fas fa-laptop-house"></i> Выбор квартир
+            <LaptopLogo className="header__link-icon" />
+            <span>Выбор квартир</span>
           </NavLink>
           <NavLink
             to="/favoirites"
             className="header__link mr-5"
             activeClassName="link--active"
           >
-            <i className="fas fa-heart"></i> Избранное
+            <HeartLogo className="header__link-icon" />
+            <span>Избранное</span>
           </NavLink>
           <NavLink
             to="/bids"
             className="header__link"
             activeClassName="link--active"
           >
-            <i className="fas fa-file-alt"></i> Заявки
+            <FileLogo className="header__link-icon" />
+            <span>Заявки</span>
           </NavLink>
         </div>
       </div>

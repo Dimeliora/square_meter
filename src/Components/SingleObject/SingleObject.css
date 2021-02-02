@@ -141,15 +141,11 @@
   transition: all 0.2s ease-in;
 }
 
-.button-favourite i {
+.button-favourite-icon {
   margin-right: 10px;
-  font-size: 24px;
+  width: 24px;
   color: #ececec;
   transition: all 0.2s ease-in;
-}
-
-.button-favourite span {
-  text-transform: uppercase;
 }
 
 .button-favourite:hover {
@@ -163,7 +159,7 @@
   outline: none;
 }
 
-.button-favourite:hover i {
+.button-favourite:hover .button-favourite-icon {
   color: #e51414;
 }
 
@@ -173,7 +169,7 @@
   color: #ffffff;
 }
 
-.button-favourite--active i {
+.button-favourite--active .button-favourite-icon {
   color: #ffffff;
 }
 
@@ -183,7 +179,7 @@
   cursor: pointer;
 }
 
-.button-favourite--active:hover i {
+.button-favourite--active:hover .button-favourite-icon {
   color: #ffffff;
 }
 

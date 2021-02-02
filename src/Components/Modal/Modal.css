@@ -1,4 +1,4 @@
-.modal-wrapper {
+.modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -7,7 +7,7 @@
   background-color: rgba(70, 131, 180, 0.5);
 }
 
-.modal {
+.modal-window {
   display: block;
   width: 600px;
   height: auto;
@@ -18,9 +18,9 @@
   background-color: #fff;
 }
 
-.modal__close {
+.modal-close {
   display: block;
-  padding: 5px 15px;
+  padding: 5px 10px;
   position: absolute;
   right: 0;
   top: 0;
@@ -31,10 +31,10 @@
   transition: 0.1s background-color ease-in;
 }
 
-.modal__close:hover {
+.modal-close:hover {
   background-color: #181818;
 }
 
-.modal__close:active {
+.modal-close:active {
   background-color: #000000;
 }

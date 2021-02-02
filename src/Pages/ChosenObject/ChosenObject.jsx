@@ -7,7 +7,7 @@ import Preloader from '../../Components/Preloaders/Loader';
 import Heading from '../../Components/Heading';
 import SingleObject from '../../Components/SingleObject';
 import Modal from '../../Components/Modal';
-import BidForm from '../../Components/BidForm';
+import BidFormContainer from '../../Containers/ComponentContainers/BidFormContainer'
 
 import './ChosenObject.css';
 
@@ -23,6 +23,7 @@ const ChosenObject = (props) => {
   const objectId = params.id;
 
   const [showModal, setShowModal] = React.useState(false);
+  const [isReservationSucceed, setReservationSucceed] = React.useState(false);
 
   React.useEffect(() => {
     getChosenObject(objectId);
@@ -42,6 +43,22 @@ const ChosenObject = (props) => {
     setShowModal(true);
   };
 
+  const onBidCreated = () => {
+    setReservationSucceed(true);
+    setTimeout(() => {
+      setShowModal(false);
+      setReservationSucceed(false);
+    }, 2000);
+  };
+
+  const modalContent = isReservationSucceed ? (
+    <div className="reservation-succeed-notice">
+      Ваша заявка на бронирование успешно создана
+    </div>
+  ) : (
+    <BidFormContainer objectInfo={chosenObject} onBidCreated={onBidCreated} />
+  );
+
   return (
     <div className="container content-wrapper">
       <Heading>
@@ -52,7 +69,7 @@ const ChosenObject = (props) => {
         objectData={chosenObject}
         isFavourite={isFavourite}
         toggleObjectAsFavourite={toggleObjectAsFavourite}
-        onBook={onShowModal}
+        onReserve={onShowModal}
       />
 
       <div className="back-to-results">
@@ -61,11 +78,7 @@ const ChosenObject = (props) => {
         </Link>
       </div>
 
-      {showModal && (
-        <Modal onClose={onCloseModal}>
-          <BidForm objectInfo={chosenObject} />
-        </Modal>
-      )}
+      {showModal && <Modal onClose={onCloseModal}>{modalContent}</Modal>}
     </div>
   );
 };
