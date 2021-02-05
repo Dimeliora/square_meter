@@ -7,7 +7,7 @@ import {
   SET_CHOSEN_OBJECT,
 } from '../ActionTypes/ObjectsActions';
 
-import initialFilterValues from '../../Configs/initialFilterValues';
+import initialFilterValues from '../../configs/initialFilterValues';
 
 const initState = {
   isFetching: false,

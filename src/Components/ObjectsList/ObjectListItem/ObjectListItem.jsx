@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
 
-import priceNormalize from '../../../Utils/priceNormalize';
+import priceNormalize from '../../../utils/priceNormalize';
 
-import { ReactComponent as HeartLogo } from '../../../Assets/icons/heart-solid.svg';
+import { ReactComponent as HeartLogo } from '../../../assets/icons/heart-solid.svg';
 
 import './ObjectListItem.css';
 
