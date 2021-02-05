@@ -1,8 +1,8 @@
 import cn from 'classnames';
 
-import priceNormalize from '../../utils/priceNormalize';
+import priceNormalize from '../../helpers/priceNormalize';
 
-import { ReactComponent as HeartLogo } from '../../assets/icons/heart-solid.svg';
+import { ReactComponent as HeartLogo } from '../../asset/icons/heart-solid.svg';
 
 import './SingleObject.css';
 

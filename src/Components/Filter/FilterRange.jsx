@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 
-import priceNormalize from '../../utils/priceNormalize';
+import priceNormalize from '../../helpers/priceNormalize';
 
 const FilterRange = (props) => {
   const {

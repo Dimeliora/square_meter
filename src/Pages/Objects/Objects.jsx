@@ -1,6 +1,6 @@
 import React from 'react';
 
-import initialFilterValues from '../../configs/initialFilterValues';
+import initialFilterValues from '../../confs/initialFilterValues';
 
 import Preloader from '../../Components/Preloaders/Loader';
 import Heading from '../../Components/Heading';

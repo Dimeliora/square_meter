@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import priceNormalize from '../../utils/priceNormalize';
+import priceNormalize from '../../helpers/priceNormalize';
 
 import Preloader from '../../Components/Preloaders/Loader';
 import Heading from '../../Components/Heading';

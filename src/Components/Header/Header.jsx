@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom';
 
-import { ReactComponent as LaptopLogo } from '../../assets/icons/laptop-house-solid.svg';
-import { ReactComponent as HeartLogo } from '../../assets/icons/heart-solid.svg';
-import { ReactComponent as FileLogo } from '../../assets/icons/file-alt-regular.svg';
+import { ReactComponent as LaptopLogo } from '../../asset/icons/laptop-house-solid.svg';
+import { ReactComponent as HeartLogo } from '../../asset/icons/heart-solid.svg';
+import { ReactComponent as FileLogo } from '../../asset/icons/file-alt-regular.svg';
 
 import './Header.css';
 

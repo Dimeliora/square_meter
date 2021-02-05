@@ -1,6 +1,6 @@
 .home {
   position: relative;
-  background: url('../../assets/images/bg.jpg') no-repeat center / cover;
+  background: url('../../asset/images/bg.jpg') no-repeat center / cover;
 }
 
 .home::before {
