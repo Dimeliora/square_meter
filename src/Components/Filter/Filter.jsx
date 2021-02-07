@@ -42,7 +42,7 @@ const Filter = (props) => {
   const onFormStateChange = React.useCallback((e) => {
     const { name, value } = e.target;
     onFilterValuesChange({ name, value });
-  }, []);
+  }, [onFilterValuesChange]);
 
   const onShowObjects = (e) => {
     e.preventDefault();

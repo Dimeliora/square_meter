@@ -32,16 +32,16 @@ const Objects = (props) => {
   });
 
   React.useEffect(() => {
-    if (!filterSettings) getInitData();
-  }, [filterSettings]);
-
-  React.useEffect(() => {
-    if (filterSettings) getFilteredData(filterValues);
-  }, [filterValues]);
+    if (filterSettings) {
+      getFilteredData(filterValues);
+    } else {
+      getInitData();
+    }
+  }, [filterSettings, filterValues, getInitData, getFilteredData]);
 
   React.useEffect(() => {
     if (isFilterApplied) setObjectsToShow(totalObjects);
-  }, [totalObjects]);
+  }, [isFilterApplied, totalObjects]);
 
   const onFilterValuesChange = (filterInputValue) => {
     setFilterInputValue(filterInputValue);
@@ -54,7 +54,6 @@ const Objects = (props) => {
   };
 
   const onApplyFilter = () => {
-    setObjectsToShow(totalObjects);
     setIsFilterApplied(true);
   };
 
