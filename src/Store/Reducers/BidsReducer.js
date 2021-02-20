@@ -3,6 +3,7 @@ import {
   SET_BID_PHONE,
   SET_BID_POLICY_AGREEMENT,
   TOGGLE_IS_BID_FETCHING,
+  TOGGLE_IS_BID_FETCH_ERROR,
   SET_BID_CREATE_RESPONSE,
   RESET_BID_CREATE_RESPONSE,
   RESET_BID_FORM,
@@ -14,9 +15,10 @@ const initState = {
   bidPhone: "",
   bidPolicyAgreement: false,
   isBidFetching: false,
+  isBidFetchError: false,
   bidCreateMessage: null,
   bidCreateErrors: [],
-  totalBids: [],
+  totalBids: null,
 };
 
 const bidsReducer = (state = initState, action) => {
@@ -32,6 +34,9 @@ const bidsReducer = (state = initState, action) => {
 
     case TOGGLE_IS_BID_FETCHING:
       return { ...state, isBidFetching: action.isBidFetching };
+
+    case TOGGLE_IS_BID_FETCH_ERROR:
+      return { ...state, isBidFetchError: action.isBidFetchError };
 
     case SET_BID_CREATE_RESPONSE:
       return {

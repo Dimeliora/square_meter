@@ -8,7 +8,7 @@ import Home from "../../Pages/Home";
 import ObjectsContainer from "../../Containers/PageContainers/ObjectsContainer";
 import ChosenObjectContainer from "../../Containers/PageContainers/ChosenObjectContainer";
 import FavouritesContainer from "../../Containers/PageContainers/FavouritesContainer";
-import Bids from "../../Pages/Bids";
+import BidsContainer from "../../Containers/PageContainers/BidsContainer";
 import ErrorPage from "../../Pages/ErrorPage";
 
 import "./App.css";
@@ -26,7 +26,7 @@ const App = () => {
             <Route exact path="/objects" component={ObjectsContainer} />
             <Route path="/objects/:id" component={ChosenObjectContainer} />
             <Route path="/favoirites" component={FavouritesContainer} />
-            <Route path="/bids" component={Bids} />
+            <Route path="/bids" component={BidsContainer} />
             <Route render={() => <Redirect to="404" />} />
           </Switch>
           <Footer />
