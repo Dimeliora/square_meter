@@ -1,0 +1,38 @@
+.error-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-page__heading {
+  color: #9c0f0f;
+  font-size: 12rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.error-page__subheading {
+  font-size: 3rem;
+}
+
+.error-page__button {
+  margin-top: 20px;
+  padding: 8px 20px;
+  border: 2px solid #e51414;
+  border-radius: 32px;
+  background-color: #e51414;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: all 0.3s 0.1s ease-in;
+}
+
+.error-page__button:hover,
+.error-page__button:active,
+.error-page__button:focus {
+  background-color: transparent;
+  color: #e51414;
+}

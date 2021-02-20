@@ -2,18 +2,18 @@ import {
   SET_BID_NAME,
   SET_BID_PHONE,
   SET_BID_POLICY_AGREEMENT,
-  TOGGLE_BID_IS_FETCHING,
+  TOGGLE_IS_BID_FETCHING,
   SET_BID_CREATE_RESPONSE,
   RESET_BID_CREATE_RESPONSE,
   RESET_BID_FORM,
   SET_TOTAL_BIDS,
-} from '../ActionTypes/BidsActions';
+} from "../ActionTypes/BidsActions";
 
 const initState = {
-  bidName: '',
-  bidPhone: '',
+  bidName: "",
+  bidPhone: "",
   bidPolicyAgreement: false,
-  bidIsFetching: false,
+  isBidFetching: false,
   bidCreateMessage: null,
   bidCreateErrors: [],
   totalBids: [],
@@ -30,8 +30,8 @@ const bidsReducer = (state = initState, action) => {
     case SET_BID_POLICY_AGREEMENT:
       return { ...state, bidPolicyAgreement: action.bidPolicyAgreement };
 
-    case TOGGLE_BID_IS_FETCHING:
-      return { ...state, bidIsFetching: action.bidIsFetching };
+    case TOGGLE_IS_BID_FETCHING:
+      return { ...state, isBidFetching: action.isBidFetching };
 
     case SET_BID_CREATE_RESPONSE:
       return {
@@ -50,14 +50,14 @@ const bidsReducer = (state = initState, action) => {
     case RESET_BID_FORM:
       return {
         ...state,
-        bidName: '',
-        bidPhone: '',
+        bidName: "",
+        bidPhone: "",
         bidPolicyAgreement: false,
       };
 
     case SET_TOTAL_BIDS:
       return { ...state, totalBids: action.totalBids };
-      
+
     default:
       return state;
   }

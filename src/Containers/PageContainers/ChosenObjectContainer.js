@@ -7,6 +7,7 @@ import ChosenObject from '../../Pages/ChosenObject';
 
 const mapStateToProps = (state) => ({
   chosenObject: state.objects.chosenObject,
+  isFetchError: state.objects.isFetchError,
   favouriteObjects: state.favourites.favourites,
 });
 

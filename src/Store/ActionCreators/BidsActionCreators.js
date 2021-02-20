@@ -4,15 +4,15 @@ import {
 	SET_BID_NAME,
 	SET_BID_PHONE,
 	SET_BID_POLICY_AGREEMENT,
-	TOGGLE_BID_IS_FETCHING,
+	TOGGLE_IS_BID_FETCHING,
 	SET_BID_CREATE_RESPONSE,
 	RESET_BID_CREATE_RESPONSE,
 	RESET_BID_FORM,
 } from "../ActionTypes/BidsActions";
 
-const toggleBidIsFetching = (bidIsFetching) => ({
-	type: TOGGLE_BID_IS_FETCHING,
-	bidIsFetching,
+const toggleBidIsFetching = (isBidFetching) => ({
+	type: TOGGLE_IS_BID_FETCHING,
+	isBidFetching,
 });
 
 const setBidCreateResponse = ({ message, errors }) => ({

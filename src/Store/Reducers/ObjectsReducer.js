@@ -1,16 +1,18 @@
 import {
   TOGGLE_IS_FETCHING,
+  TOGGLE_IS_FETCH_ERROR,
   SETUP_FILTER,
   SET_TOTAL_OBJECTS,
   SET_FILTER_INPUT_VALUE,
   SET_INITIAL_FILTER_VALUES,
   SET_CHOSEN_OBJECT,
-} from '../ActionTypes/ObjectsActions';
+} from "../ActionTypes/ObjectsActions";
 
-import initialFilterValues from '../../confs/initialFilterValues';
+import initialFilterValues from "../../confs/initialFilterValues";
 
 const initState = {
   isFetching: false,
+  isFetchError: false,
   filterSettings: null,
   filterValues: initialFilterValues,
   totalObjects: [],
@@ -21,6 +23,9 @@ const objectsReducer = (state = initState, action) => {
   switch (action.type) {
     case TOGGLE_IS_FETCHING:
       return { ...state, isFetching: action.isFetching };
+
+    case TOGGLE_IS_FETCH_ERROR:
+      return { ...state, isFetchError: action.isFetchError };
 
     case SETUP_FILTER:
       return { ...state, filterSettings: action.filterSettings };

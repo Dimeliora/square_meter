@@ -4,144 +4,148 @@ import PropTypes from "prop-types";
 import initialFilterValues from "../../confs/initialFilterValues";
 
 import Preloader from "../../Components/Preloaders/Loader";
+import ErrorNotification from "../../Components/ErrorNotification";
 import Heading from "../../Components/Heading";
 import Filter from "../../Components/Filter/Filter";
 import ObjectsListHeader from "../../Components/ObjectsListHeader";
 import ObjectsList from "../../Components/ObjectsList";
 
 const Objects = (props) => {
-	const {
-		isFetching,
-		filterSettings,
-		filterValues,
-		totalObjects,
-		favouriteObjects,
-		getInitData,
-		setFilterInputValue,
-		setInitialFilterValues,
-		getFilteredData,
-		toggleObjectAsFavourite,
-	} = props;
+  const {
+    isFetching,
+    isFetchError,
+    filterSettings,
+    filterValues,
+    totalObjects,
+    favouriteObjects,
+    getInitData,
+    setFilterInputValue,
+    setInitialFilterValues,
+    getFilteredData,
+    toggleObjectAsFavourite,
+  } = props;
 
-	const [isFilterApplied, setIsFilterApplied] = React.useState(true);
+  const [isFilterApplied, setIsFilterApplied] = React.useState(true);
 
-	const [objectsToShow, setObjectsToShow] = React.useState([]);
+  const [objectsToShow, setObjectsToShow] = React.useState([]);
 
-	const [sortParams, setSortParams] = React.useState({
-		sorterName: null,
-		isAscending: null,
-	});
+  const [sortParams, setSortParams] = React.useState({
+    sorterName: null,
+    isAscending: null,
+  });
 
-	React.useEffect(() => {
-		if (filterSettings) {
-			getFilteredData(filterValues);
-		} else {
-			getInitData();
-		}
-	}, [filterSettings, filterValues, getInitData, getFilteredData]);
+  React.useEffect(() => {
+    if (filterSettings) {
+      getFilteredData(filterValues);
+    } else {
+      getInitData();
+    }
+  }, [filterSettings, filterValues, getInitData, getFilteredData]);
 
-	React.useEffect(() => {
-		if (isFilterApplied) setObjectsToShow(totalObjects);
-	}, [isFilterApplied, totalObjects]);
+  React.useEffect(() => {
+    if (isFilterApplied) setObjectsToShow(totalObjects);
+  }, [isFilterApplied, totalObjects]);
 
-	const onFilterValuesChange = (filterInputValue) => {
-		setFilterInputValue(filterInputValue);
-		setIsFilterApplied(false);
-	};
+  const onFilterValuesChange = (filterInputValue) => {
+    setFilterInputValue(filterInputValue);
+    setIsFilterApplied(false);
+  };
 
-	const onResetFilter = () => {
-		setInitialFilterValues(initialFilterValues);
-		setIsFilterApplied(false);
-	};
+  const onResetFilter = () => {
+    setInitialFilterValues(initialFilterValues);
+    setIsFilterApplied(false);
+  };
 
-	const onApplyFilter = () => {
-		setIsFilterApplied(true);
-	};
+  const onApplyFilter = () => {
+    setIsFilterApplied(true);
+  };
 
-	const onSortObjects = React.useCallback(
-		({ sorterName, isCurrentAscending }) => {
-			setSortParams((state) => ({
-				sorterName,
-				isAscending:
-					sorterName === state.sorterName
-						? !state.isAscending
-						: isCurrentAscending,
-			}));
-		},
-		[]
-	);
+  const onSortObjects = React.useCallback(
+    ({ sorterName, isCurrentAscending }) => {
+      setSortParams((state) => ({
+        sorterName,
+        isAscending:
+          sorterName === state.sorterName
+            ? !state.isAscending
+            : isCurrentAscending,
+      }));
+    },
+    []
+  );
 
-	const sortObjectsToShow = (objects, isAscending, sorterName) => {
-		if (!sorterName) return objects;
+  const sortObjectsToShow = (objects, isAscending, sorterName) => {
+    if (!sorterName) return objects;
 
-		const sortDir = isAscending ? 1 : -1;
-		return [...objects].sort(
-			(a, b) => (a[sorterName] - b[sorterName]) * sortDir
-		);
-	};
+    const sortDir = isAscending ? 1 : -1;
+    return [...objects].sort(
+      (a, b) => (a[sorterName] - b[sorterName]) * sortDir
+    );
+  };
 
-	if (!filterSettings) return <Preloader />;
+  if (isFetchError) return <ErrorNotification />;
 
-	const { isAscending, sorterName } = sortParams;
-	const sortedObjectsToShow = sortObjectsToShow(
-		objectsToShow,
-		isAscending,
-		sorterName
-	);
+  if (!isFetchError && !filterSettings) return <Preloader />;
 
-	const totalObjectsAmount = totalObjects.length;
+  const { isAscending, sorterName } = sortParams;
+  const sortedObjectsToShow = sortObjectsToShow(
+    objectsToShow,
+    isAscending,
+    sorterName
+  );
 
-	return (
-		<div className="container content-wrapper">
-			<Heading>Выбор квартир:</Heading>
-			<Filter
-				isFetching={isFetching}
-				isFilterApplied={isFilterApplied}
-				filterSettings={filterSettings}
-				filterValues={filterValues}
-				totalObjectsAmount={totalObjectsAmount}
-				onFilterValuesChange={onFilterValuesChange}
-				onApplyFilter={onApplyFilter}
-				onResetFilter={onResetFilter}
-			/>
-			<ObjectsListHeader
-				onSortObjects={onSortObjects}
-				activeSorter={sorterName}
-				isAscending={isAscending}
-			/>
-			<ObjectsList
-				totalObjects={sortedObjectsToShow}
-				favouriteObjects={favouriteObjects}
-				onToggleFavObject={toggleObjectAsFavourite}
-			/>
-		</div>
-	);
+  const totalObjectsAmount = totalObjects.length;
+
+  return (
+    <div className="container content-wrapper">
+      <Heading>Выбор квартир:</Heading>
+      <Filter
+        isFetching={isFetching}
+        isFilterApplied={isFilterApplied}
+        filterSettings={filterSettings}
+        filterValues={filterValues}
+        totalObjectsAmount={totalObjectsAmount}
+        onFilterValuesChange={onFilterValuesChange}
+        onApplyFilter={onApplyFilter}
+        onResetFilter={onResetFilter}
+      />
+      <ObjectsListHeader
+        onSortObjects={onSortObjects}
+        activeSorter={sorterName}
+        isAscending={isAscending}
+      />
+      <ObjectsList
+        totalObjects={sortedObjectsToShow}
+        favouriteObjects={favouriteObjects}
+        onToggleFavObject={toggleObjectAsFavourite}
+      />
+    </div>
+  );
 };
 
 Objects.propTypes = {
-	isFetching: PropTypes.bool,
-	filterSettings: PropTypes.object,
-	filterValues: PropTypes.object,
-	totalObjects: PropTypes.array,
-	favouriteObjects: PropTypes.array,
-	getInitData: PropTypes.func,
-	setFilterInputValue: PropTypes.func,
-	setInitialFilterValues: PropTypes.func,
-	getFilteredData: PropTypes.func,
-	toggleObjectAsFavourite: PropTypes.func,
+  isFetching: PropTypes.bool,
+  filterSettings: PropTypes.object,
+  filterValues: PropTypes.object,
+  totalObjects: PropTypes.array,
+  favouriteObjects: PropTypes.array,
+  getInitData: PropTypes.func,
+  setFilterInputValue: PropTypes.func,
+  setInitialFilterValues: PropTypes.func,
+  getFilteredData: PropTypes.func,
+  toggleObjectAsFavourite: PropTypes.func,
 };
 
 Objects.defaultProps = {
-	isFetching: false,
-	filterSettings: {},
-	filterValues: {},
-	totalObjects: [],
-	favouriteObjects: [],
-	getInitData: () => {},
-	setFilterInputValue: () => {},
-	setInitialFilterValues: () => {},
-	getFilteredData: () => {},
-	toggleObjectAsFavourite: () => {},
+  isFetching: false,
+  filterSettings: {},
+  filterValues: {},
+  totalObjects: [],
+  favouriteObjects: [],
+  getInitData: () => {},
+  setFilterInputValue: () => {},
+  setInitialFilterValues: () => {},
+  getFilteredData: () => {},
+  toggleObjectAsFavourite: () => {},
 };
 
 export default Objects;

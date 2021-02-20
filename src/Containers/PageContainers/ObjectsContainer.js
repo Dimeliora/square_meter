@@ -12,6 +12,7 @@ import Objects from '../../Pages/Objects';
 
 const mapStateToProps = (state) => ({
   isFetching: state.objects.isFetching,
+  isFetchError: state.objects.isFetchError,
   filterSettings: state.objects.filterSettings,
   totalObjects: state.objects.totalObjects,
   filterValues: state.objects.filterValues,
