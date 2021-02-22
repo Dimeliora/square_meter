@@ -1,7 +1,7 @@
 import cn from "classnames";
 import PropTypes from "prop-types";
 
-import ButtonLoader from "../Preloaders/ButtonLoader";
+import LinearLoader from "../Preloaders/LinearLoader";
 
 const FilterControls = (props) => {
 	const {
@@ -31,7 +31,7 @@ const FilterControls = (props) => {
 				disabled={disableShowBtn}
 				onClick={onShowObjects}
 			>
-				{isFetching ? <ButtonLoader /> : showBtnLabel}
+				{isFetching ? <LinearLoader /> : showBtnLabel}
 			</button>
 		</div>
 	);

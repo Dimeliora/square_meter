@@ -11,7 +11,7 @@ const Favourites = (props) => {
 
 	const favouritesContent = (
 		<div className="favourites-wrapper">
-			<Heading classname="pb-3">Избранное</Heading>
+			<Heading classname="mb-3">Избранное</Heading>
 			<ObjectsList
 				totalObjects={favouriteObjects}
 				favouriteObjects={favouriteObjects}

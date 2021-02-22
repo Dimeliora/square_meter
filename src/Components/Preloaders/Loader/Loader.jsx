@@ -1,6 +1,6 @@
-import './Preloader.css';
+import './Loader.css';
 
-const Preloader = () => {
+const Loader = () => {
   return (
     <div className="preloader-holder">
       <div className="sk-folding-cube">
@@ -13,4 +13,4 @@ const Preloader = () => {
   );
 };
 
-export default Preloader;
+export default Loader;

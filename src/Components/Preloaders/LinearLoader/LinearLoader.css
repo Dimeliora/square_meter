@@ -1,8 +1,9 @@
 .lds-ellipsis {
-  display: inline-block;
   position: relative;
+  display: block;
   width: 80px;
   height: 50px;
+  margin: 0 auto;
 }
 
 .lds-ellipsis div {
@@ -60,4 +61,8 @@
   100% {
     transform: translate(24px, 0);
   }
+}
+
+.linear-loader-bg--red div {
+  background-color: #cc5b5b;
 }

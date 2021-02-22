@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 import "./BidsListItem.css";
 
 const BidsListItem = ({ id, name, phone }) => {
@@ -8,6 +10,18 @@ const BidsListItem = ({ id, name, phone }) => {
       <div className="bid-item__phone">{phone}</div>
     </div>
   );
+};
+
+BidsListItem.propTypes = {
+  id: PropTypes.string,
+  name: PropTypes.string,
+  phone: PropTypes.string,
+};
+
+BidsListItem.defaultProps = {
+  id: "",
+  name: "",
+  phone: "",
 };
 
 export default BidsListItem;
