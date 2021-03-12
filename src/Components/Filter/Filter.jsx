@@ -1,129 +1,132 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import FilterSelect from "./FilterSelect";
-import FilterCheckboxes from "./FilterCheckboxes";
-import FilterRange from "./FilterRange";
-import FilterControls from "./FilterControls";
+import FilterDropdown from "./Components/FilterDropdown";
+import FilterCheckboxGroup from "./Components/FilterCheckboxGroup";
+import FilterRangeGroup from "./Components/FilterRangeGroup";
+import FilterButtonsGroup from "./Components/FilterButtonsGroup";
 
-import "./Filter.css";
+import "./Filter.scss";
 
 const Filter = (props) => {
-	const {
-		isFetching,
-		isFilterApplied,
-		filterSettings,
-		filterValues,
-		totalObjectsAmount,
-		onFilterValuesChange,
-		onApplyFilter,
-		onResetFilter,
-	} = props;
+  const {
+    isFetching,
+    isFilterApplied,
+    filterSettings,
+    filterValues,
+    totalObjectsAmount,
+    onFilterValuesChange,
+    onApplyFilter,
+    onResetFilter,
+  } = props;
 
-	const {
-		squareMin = "",
-		squareMax = "",
-		priceMin = "",
-		priceMax = "",
-		complexNames = "",
-		roomValues = [],
-	} = filterSettings;
+  const {
+    squareMin = "",
+    squareMax = "",
+    priceMin = "",
+    priceMax = "",
+    complexNames = "",
+    roomValues = [],
+  } = filterSettings;
 
-	const {
-		complex = "",
-		rooms = [],
-		sqmin = "",
-		sqmax = "",
-		pricemin = "",
-		pricemax = "",
-	} = filterValues;
+  const {
+    complex = "",
+    rooms = [],
+    sqmin = "",
+    sqmax = "",
+    pricemin = "",
+    pricemax = "",
+  } = filterValues;
 
-	const formRef = React.useRef();
+  const onFormStateChange = React.useCallback((e) => {
+    const { name, value } = e.target;
+    onFilterValuesChange({ name, value });
+  }, []);
 
-	const onFormStateChange = React.useCallback(
-		(e) => {
-			const { name, value } = e.target;
-			onFilterValuesChange({ name, value });
-		},
-		[onFilterValuesChange]
-	);
+  const onShowObjects = React.useCallback(() => {
+    onApplyFilter();
+  }, []);
 
-	const onShowObjects = (e) => {
-		e.preventDefault();
-		onApplyFilter();
-	};
+  const onResetForm = React.useCallback(() => {
+    onResetFilter();
+  }, []);
 
-	const onResetForm = () => {
-		formRef.current.reset();
-		onResetFilter();
-	};
-
-	return (
-		<form ref={formRef}>
-			<div className="filter">
-				<FilterSelect
-					value={complex}
-					options={complexNames}
-					onInputChange={onFormStateChange}
-				/>
-				<FilterCheckboxes
-					values={roomValues}
-					checkedValues={rooms}
-					onInputChange={onFormStateChange}
-				/>
-				<FilterRange
-					minPlaceholder={squareMin}
-					maxPlaceholder={squareMax}
-					minValue={sqmin}
-					maxValue={sqmax}
-					label="Площадь"
-					name="sq"
-					unitType="м2"
-					onInputChange={onFormStateChange}
-				/>
-				<FilterRange
-					minPlaceholder={priceMin}
-					maxPlaceholder={priceMax}
-					minValue={pricemin}
-					maxValue={pricemax}
-					label="Стоимость"
-					name="price"
-					unitType="₽"
-					classname="range__input--price"
-					onInputChange={onFormStateChange}
-				/>
-			</div>
-			<FilterControls
-				isFetching={isFetching}
-				isFilterApplied={isFilterApplied}
-				objectsAmount={totalObjectsAmount}
-				onShowObjects={onShowObjects}
-				onResetForm={onResetForm}
-			/>
-		</form>
-	);
+  return (
+    <form className="filter">
+      <div className="filter__wrapper">
+        <div className="filter__col">
+          <div className="filter__label">Проект:</div>
+          <FilterDropdown
+            value={complex}
+            options={complexNames}
+            onInputChange={onFormStateChange}
+          />
+        </div>
+        <div className="filter__col">
+          <div className="filter__label">Комнат:</div>
+          <FilterCheckboxGroup
+            values={roomValues}
+            checkedValues={rooms}
+            onInputChange={onFormStateChange}
+          />
+        </div>
+        <div className="filter__col">
+          <div className="filter__label">Площадь:</div>
+          <FilterRangeGroup
+            minPlaceholder={squareMin}
+            maxPlaceholder={squareMax}
+            minValue={sqmin}
+            maxValue={sqmax}
+            name="sq"
+            unitType="м2"
+            onInputChange={onFormStateChange}
+          />
+        </div>
+        <div className="filter__col">
+          <div className="filter__label">Стоимость:</div>
+          <FilterRangeGroup
+            minPlaceholder={priceMin}
+            maxPlaceholder={priceMax}
+            minValue={pricemin}
+            maxValue={pricemax}
+            name="price"
+            unitType="₽"
+            classname="price"
+            onInputChange={onFormStateChange}
+          />
+        </div>
+      </div>
+      <FilterButtonsGroup
+        isFetching={isFetching}
+        isFilterApplied={isFilterApplied}
+        objectsAmount={totalObjectsAmount}
+        onShowObjects={onShowObjects}
+        onResetForm={onResetForm}
+      />
+    </form>
+  );
 };
 
 Filter.propTypes = {
-	isFetching: PropTypes.bool,
-	isFilterApplied: PropTypes.bool,
-	filterSettings: PropTypes.object,
-	filterValues: PropTypes.object,
-	totalObjectsAmount: PropTypes.number,
-	onFilterValuesChange: PropTypes.func,
-	onApplyFilter: PropTypes.func,
-	onResetFilter: PropTypes.func,
+  isFetching: PropTypes.bool,
+  isFilterApplied: PropTypes.bool,
+  filterSettings: PropTypes.object,
+  filterValues: PropTypes.object,
+  totalObjectsAmount: PropTypes.number,
+  onFilterValuesChange: PropTypes.func,
+  onApplyFilter: PropTypes.func,
+  onResetFilter: PropTypes.func,
 };
 
 Filter.defaultProps = {
-	isFetching: false,
-	isFilterApplied: true,
-	filterSettings: {},
-	filterValues: {},
-	totalObjectsAmount: 0,
-	onFilterValuesChange: () => {},
-	onApplyFilter: () => {},
-	onResetFilter: () => {},
+  isFetching: false,
+  isFilterApplied: true,
+  filterSettings: {},
+  filterValues: {},
+  totalObjectsAmount: 0,
+  onFilterValuesChange: () => {},
+  onApplyFilter: () => {},
+  onResetFilter: () => {},
 };
 
 export default Filter;

@@ -1,6 +1,6 @@
 import { useHistory } from "react-router-dom";
 
-import "./ErrorPage.css";
+import "./ErrorPage.scss";
 
 const ErrorPage = () => {
   const history = useHistory();
@@ -11,13 +11,15 @@ const ErrorPage = () => {
 
   return (
     <div className="error-page">
-      <h1 className="error-page__heading">404</h1>
-      <h2 className="error-page__subheading">
-        К сожалению, такой страницы не существует
-      </h2>
-      <button className="error-page__button" onClick={handleBackBtnClick}>
-        Вернуться на главную страницу
-      </button>
+      <div className="container">
+        <h1 className="error-page__heading">404</h1>
+        <h2 className="error-page__subheading">
+          К сожалению, такой страницы не существует
+        </h2>
+        <button className="error-page__button" onClick={handleBackBtnClick}>
+          Вернуться на главную страницу
+        </button>
+      </div>
     </div>
   );
 };

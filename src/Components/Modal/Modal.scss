@@ -1,0 +1,46 @@
+@import "../../scss/variables";
+
+.modal {
+  &-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    background-color: $blue-transparent;
+  }
+
+  &-window {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    width: 600px;
+    background-color: $white;
+    transform: translate(-50%, -50%);
+
+    @media screen and (max-width: 991px) {
+      width: 400px;
+    }
+
+    @media screen and (max-width: 575px) {
+      width: 290px;
+    }
+  }
+
+  &-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: block;
+    padding: 5px 10px;
+    border: none;
+    background-color: transparent;
+    transition: 0.1s background-color ease-in;
+
+    &:hover {
+      background-color: $gray-light;
+    }
+  }
+}

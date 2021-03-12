@@ -1,46 +1,66 @@
-import { NavLink } from 'react-router-dom';
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
+import cn from "classnames";
 
-import { ReactComponent as LaptopLogo } from '../../asset/icons/laptop-house-solid.svg';
-import { ReactComponent as HeartLogo } from '../../asset/icons/heart-solid.svg';
-import { ReactComponent as FileLogo } from '../../asset/icons/file-alt-regular.svg';
+import ROUTES from "../../configs/routes";
 
-import './Header.css';
+import Logo from "./Components/Logo";
+
+import "./Header.scss";
 
 const Header = () => {
-  return (
-    <header className="header">
-      <div className="header__container">
-        <div className="header__title">Интернет-магазин недвижимости</div>
-        <div className="header__menu">
-          <NavLink
-            exact
-            to="/objects"
-            className="header__link mr-5"
-            activeClassName="link--active"
-          >
-            <LaptopLogo className="header__link-icon" />
-            <span>Выбор квартир</span>
-          </NavLink>
-          <NavLink
-            to="/favoirites"
-            className="header__link mr-5"
-            activeClassName="link--active"
-          >
-            <HeartLogo className="header__link-icon" />
-            <span>Избранное</span>
-          </NavLink>
-          <NavLink
-            to="/bids"
-            className="header__link"
-            activeClassName="link--active"
-          >
-            <FileLogo className="header__link-icon" />
-            <span>Заявки</span>
-          </NavLink>
-        </div>
-      </div>
-    </header>
-  );
+	const [isMenuActive, setMenuActive] = useState(false);
+
+	const handleMenuBtnClick = () => {
+		setMenuActive((prevState) => !prevState);
+	};
+
+	const handleMenuItemClick = () => {
+		setMenuActive(false);
+	};
+
+	return (
+		<header className="header">
+			<div className="header__navbar">
+				<div className="container header__wrapper">
+					<div className="header__title">Интернет-магазин недвижимости</div>
+					<nav
+						className={cn("header__menu", {
+							"header__menu--active": isMenuActive,
+						})}
+					>
+						<div className="header__menu-wrapper">
+							{ROUTES.filter(({ isDynamic }) => !isDynamic).map(
+								({ name, href, isExact }) => (
+									<NavLink
+										key={name}
+										exact={isExact}
+										to={href}
+										className="header__link"
+										activeClassName="header__link--active"
+										onClick={handleMenuItemClick}
+									>
+										{name}
+									</NavLink>
+								)
+							)}
+						</div>
+					</nav>
+					<div
+						className={cn("header__menu-button", {
+							"header__menu-button--active": isMenuActive,
+						})}
+						onClick={handleMenuBtnClick}
+					>
+						<span />
+						<span />
+						<span />
+					</div>
+				</div>
+				<Logo />
+			</div>
+		</header>
+	);
 };
 
 export default Header;

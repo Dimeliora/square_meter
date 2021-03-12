@@ -1,6 +1,6 @@
 import { useHistory } from "react-router-dom";
 
-import "./ErrorNotification.css";
+import "./ErrorNotification.scss";
 
 const ErrorNotification = () => {
   const history = useHistory();

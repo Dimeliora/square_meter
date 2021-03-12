@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
 
-import "./BidsListItem.css";
+import "./BidsListItem.scss";
 
 const BidsListItem = ({ id, name, phone }) => {
   return (
     <div className="bid-item">
-      <div>{id}</div>
+      <div className="bid-item__number">{id}</div>
       <div className="bid-item__name">{name}</div>
       <div className="bid-item__phone">{phone}</div>
     </div>

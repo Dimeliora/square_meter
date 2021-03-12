@@ -1,37 +1,40 @@
 import Axios from "../../services/axios";
 
 import {
-  TOGGLE_IS_FETCHING,
-  TOGGLE_IS_FETCH_ERROR,
-  SETUP_FILTER,
-  SET_TOTAL_OBJECTS,
+  REQUEST_OBJECTS_DATA,
+  GET_INIT_DATA_SUCCEDED,
+  REQUEST_OBJECTS_DATA_FAILED,
+  GET_FILTERED_DATA_SUCCEDED,
   SET_FILTER_INPUT_VALUE,
   SET_INITIAL_FILTER_VALUES,
-  SET_CHOSEN_OBJECT,
+  REQUEST_CHOSEN_OBJECT,
+  GET_CHOSEN_OBJECT_SUCCEDED,
 } from "../ActionTypes/ObjectsActions";
 
-const toggleIsFetching = (isFetching) => ({
-  type: TOGGLE_IS_FETCHING,
-  isFetching,
+const requestObjectsData = () => ({
+  type: REQUEST_OBJECTS_DATA,
 });
 
-const toggleIsFetchError = (isFetchError) => ({
-  type: TOGGLE_IS_FETCH_ERROR,
-  isFetchError,
+const requestChosenObject = () => ({
+  type: REQUEST_CHOSEN_OBJECT,
 });
 
-const setupFilter = (filterSettings) => ({
-  type: SETUP_FILTER,
-  filterSettings,
+const requestObjectsDataFailed = () => ({
+  type: REQUEST_OBJECTS_DATA_FAILED,
 });
 
-const setTotalObjects = (totalObjects) => ({
-  type: SET_TOTAL_OBJECTS,
+const getInitDataSucceded = (filterSettings, totalObjects) => ({
+  type: GET_INIT_DATA_SUCCEDED,
+  payload: { filterSettings, totalObjects },
+});
+
+const getFilteredDataSucceded = (totalObjects) => ({
+  type: GET_FILTERED_DATA_SUCCEDED,
   totalObjects,
 });
 
-const setChosenObject = (chosenObject) => ({
-  type: SET_CHOSEN_OBJECT,
+const getChosenObjectSucceded = (chosenObject) => ({
+  type: GET_CHOSEN_OBJECT_SUCCEDED,
   chosenObject,
 });
 
@@ -47,20 +50,16 @@ export const setFilterInputValue = (filterInputValue) => ({
 
 export const getInitData = () => async (dispatch) => {
   try {
-    dispatch(toggleIsFetchError(false));
-    dispatch(toggleIsFetching(true));
+    dispatch(requestObjectsData());
 
     const [filterSettings, totalObjects] = await Promise.all([
       Axios.get("/itemsinfo"),
       Axios.get("/items"),
     ]);
 
-    dispatch(setupFilter(filterSettings));
-    dispatch(setTotalObjects(totalObjects));
+    dispatch(getInitDataSucceded(filterSettings, totalObjects));
   } catch (err) {
-    dispatch(toggleIsFetchError(true));
-  } finally {
-    dispatch(toggleIsFetching(false));
+    dispatch(requestObjectsDataFailed());
   }
 };
 
@@ -71,31 +70,24 @@ export const getFilteredData = (filterValues) => async (dispatch) => {
   }, {});
 
   try {
-    dispatch(toggleIsFetchError(false));
-    dispatch(toggleIsFetching(true));
+    dispatch(requestObjectsData());
 
     const totalObjects = await Axios.get(`/items`, { params });
 
-    dispatch(setTotalObjects(totalObjects));
+    dispatch(getFilteredDataSucceded(totalObjects));
   } catch (err) {
-    dispatch(toggleIsFetchError(true));
-  } finally {
-    dispatch(toggleIsFetching(false));
+    dispatch(requestObjectsDataFailed());
   }
 };
 
 export const getChosenObject = (id) => async (dispatch) => {
   try {
-    dispatch(toggleIsFetchError(false));
-    dispatch(toggleIsFetching(true));
-    dispatch(setChosenObject(null));
+    dispatch(requestChosenObject());
 
     const chosenObject = await Axios.get(`/items/${id}`);
 
-    dispatch(setChosenObject(chosenObject));
+    dispatch(getChosenObjectSucceded(chosenObject));
   } catch (err) {
-    dispatch(toggleIsFetchError(true));
-  } finally {
-    dispatch(toggleIsFetching(false));
+    dispatch(requestObjectsDataFailed());
   }
 };

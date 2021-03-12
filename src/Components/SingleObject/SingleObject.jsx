@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 
 import priceNormalize from "../../helpers/priceNormalize";
 
-import { ReactComponent as HeartLogo } from "../../asset/icons/heart-solid.svg";
+import { ReactComponent as HeartLogo } from "./assets/heart-solid.svg";
 
-import "./SingleObject.css";
+import "./SingleObject.scss";
 
 const SingleObject = (props) => {
 	const { objectData, isFavourite, toggleObjectAsFavourite, onReserve } = props;
@@ -32,70 +32,70 @@ const SingleObject = (props) => {
 	return (
 		<div className="object">
 			<div className="object__photo">
-				<div className="object__photo-wrapper">
-					<img src={image} alt="Схема планировки квартиры" />
-				</div>
+				<img src={image} alt="Схема планировки квартиры" />
 			</div>
-			<div className="object__desc">
-				<div className="object__desc-sector">ЖК {complexName}</div>
-				<div className="object__desc-name">
-					<div className="object__desc-title">{title}</div>
-					<div className="object__desc-art">{scu}</div>
+			<div className="object__description">
+				<div className="object__description-sector">ЖК {complexName}</div>
+				<div className="object__description-name">
+					<div className="object__description-info">
+						<div className="object__description-title">{title}</div>
+						<div className="object__description-art">{scu}</div>
+					</div>
 					<button
-						className={cn("button-favourite", {
-							"button-favourite--active": isFavourite,
+						className={cn("object__favourite-button", {
+							"object__favourite-button--active": isFavourite,
 						})}
 						onClick={onToggleFavourite}
 					>
-						<HeartLogo className="button-favourite-icon" />
+						<HeartLogo className="object__favourite-button-icon" />
 						<span>{isFavourite ? "В избранном" : "В избранное"}</span>
 					</button>
 				</div>
-				<div className="object__desc-details">
-					<div className="params">
-						<div className="params__item">
-							<div className="params__definition">Корпус</div>
-							<div className="params__value">{building}</div>
-						</div>
-						<div className="params__item">
-							<div className="params__definition">Этаж</div>
-							<div className="params__value">
-								{floor} из {floorsTotal}
-							</div>
-						</div>
-						<div className="params__item">
-							<div className="params__definition">Номер</div>
-							<div className="params__value">{flatNumber}</div>
-						</div>
-						<div className="params__item">
-							<div className="params__definition">Комнат</div>
-							<div className="params__value">{rooms}</div>
+				<div className="object__description-details">
+					<div className="object__description-details-item">
+						<div className="object__description-details-definition">Корпус</div>
+						<div className="object__description-details-value">{building}</div>
+					</div>
+					<div className="object__description-details-item">
+						<div className="object__description-details-definition">Этаж</div>
+						<div className="object__description-details-value">
+							{floor} из {floorsTotal}
 						</div>
 					</div>
+					<div className="object__description-details-item">
+						<div className="object__description-details-definition">Номер</div>
+						<div className="object__description-details-value">
+							{flatNumber}
+						</div>
+					</div>
+					<div className="object__description-details-item">
+						<div className="object__description-details-definition">Комнат</div>
+						<div className="object__description-details-value">{rooms}</div>
+					</div>
 				</div>
-				<div className="details">
-					<div className="details__row">
-						<div className="details__name">Стоимость</div>
-						<div className="details__value details__value--price">
+				<div className="object__info">
+					<div className="object__info-row">
+						<div className="object__info-name">Стоимость</div>
+						<div className="object__info-value object__info-value--price">
 							{priceNormalize.format(priceTotal)} ₽
 						</div>
 					</div>
-					<div className="details__row">
-						<div className="details__name">
+					<div className="object__info-row">
+						<div className="object__info-name">
 							Цена за м<sup>2</sup>
 						</div>
-						<div className="details__value">
+						<div className="object__info-value">
 							{priceNormalize.format(priceSqM)} ₽ / м<sup>2</sup>
 						</div>
 					</div>
-					<div className="details__row">
-						<div className="details__name">Площадь</div>
-						<div className="details__value">
+					<div className="object__info-row">
+						<div className="object__info-name">Площадь</div>
+						<div className="object__info-value">
 							{square} м<sup>2</sup>
 						</div>
 					</div>
 				</div>
-				<button className="button-order" onClick={onReserve}>
+				<button className="object__order-button" onClick={onReserve}>
 					Забронировать
 				</button>
 			</div>

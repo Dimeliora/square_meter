@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import initialFilterValues from "../../confs/initialFilterValues";
+import INITIAL_FILTER_VALUES from "../../configs/initialFilterValues";
 
 import Preloader from "../../Components/Preloaders/Loader";
 import ErrorNotification from "../../Components/ErrorNotification";
 import Heading from "../../Components/Heading";
 import Filter from "../../Components/Filter/Filter";
-import ObjectsListHeader from "../../Components/ObjectsListHeader";
-import ObjectsList from "../../Components/ObjectsList";
+import ObjectsSorter from "../../Components/ObjectsSorter";
+import ObjectsCardboard from "../../Components/ObjectsCardboard";
 
 const Objects = (props) => {
   const {
@@ -26,24 +26,28 @@ const Objects = (props) => {
   } = props;
 
   const [isFilterApplied, setIsFilterApplied] = React.useState(true);
-
   const [objectsToShow, setObjectsToShow] = React.useState([]);
-
   const [sortParams, setSortParams] = React.useState({
     sorterName: null,
-    isAscending: null,
+    isAscending: true,
   });
 
   React.useEffect(() => {
-    if (filterSettings) {
-      getFilteredData(filterValues);
-    } else {
+    if (!filterSettings) {
       getInitData();
     }
-  }, [filterSettings, filterValues, getInitData, getFilteredData]);
+  }, [filterSettings]);
 
   React.useEffect(() => {
-    if (isFilterApplied) setObjectsToShow(totalObjects);
+    if (totalObjects) {
+      getFilteredData(filterValues);
+    }
+  }, [filterValues]);
+
+  React.useEffect(() => {
+    if (totalObjects && isFilterApplied) {
+      setObjectsToShow(totalObjects);
+    }
   }, [isFilterApplied, totalObjects]);
 
   const onFilterValuesChange = (filterInputValue) => {
@@ -52,7 +56,7 @@ const Objects = (props) => {
   };
 
   const onResetFilter = () => {
-    setInitialFilterValues(initialFilterValues);
+    setInitialFilterValues(INITIAL_FILTER_VALUES);
     setIsFilterApplied(false);
   };
 
@@ -60,18 +64,13 @@ const Objects = (props) => {
     setIsFilterApplied(true);
   };
 
-  const onSortObjects = React.useCallback(
-    ({ sorterName, isCurrentAscending }) => {
-      setSortParams((state) => ({
-        sorterName,
-        isAscending:
-          sorterName === state.sorterName
-            ? !state.isAscending
-            : isCurrentAscending,
-      }));
-    },
-    []
-  );
+  const onSortObjects = React.useCallback((sorterName) => {
+    setSortParams((prevState) => ({
+      sorterName,
+      isAscending:
+        sorterName === prevState.sorterName ? !prevState.isAscending : true,
+    }));
+  }, []);
 
   const sortObjectsToShow = (objects, isAscending, sorterName) => {
     if (!sorterName) return objects;
@@ -93,31 +92,35 @@ const Objects = (props) => {
     sorterName
   );
 
-  const totalObjectsAmount = totalObjects.length;
+  const totalObjectsAmount = totalObjects?.length || 0;
 
   return (
-    <div className="container content-wrapper">
-      <Heading>Выбор квартир:</Heading>
-      <Filter
-        isFetching={isFetching}
-        isFilterApplied={isFilterApplied}
-        filterSettings={filterSettings}
-        filterValues={filterValues}
-        totalObjectsAmount={totalObjectsAmount}
-        onFilterValuesChange={onFilterValuesChange}
-        onApplyFilter={onApplyFilter}
-        onResetFilter={onResetFilter}
-      />
-      <ObjectsListHeader
-        onSortObjects={onSortObjects}
-        activeSorter={sorterName}
-        isAscending={isAscending}
-      />
-      <ObjectsList
-        totalObjects={sortedObjectsToShow}
-        favouriteObjects={favouriteObjects}
-        onToggleFavObject={toggleObjectAsFavourite}
-      />
+    <div className="objects">
+      <div className="container">
+        <div className="content-wrapper">
+          <Heading>Выбор квартир</Heading>
+          <Filter
+            isFetching={isFetching}
+            isFilterApplied={isFilterApplied}
+            filterSettings={filterSettings}
+            filterValues={filterValues}
+            totalObjectsAmount={totalObjectsAmount}
+            onFilterValuesChange={onFilterValuesChange}
+            onApplyFilter={onApplyFilter}
+            onResetFilter={onResetFilter}
+          />
+          <ObjectsSorter
+            onSortObjects={onSortObjects}
+            activeSorter={sorterName}
+            isAscending={isAscending}
+          />
+          <ObjectsCardboard
+            totalObjects={sortedObjectsToShow}
+            favouriteObjects={favouriteObjects}
+            onToggleFavObject={toggleObjectAsFavourite}
+          />
+        </div>
+      </div>
     </div>
   );
 };

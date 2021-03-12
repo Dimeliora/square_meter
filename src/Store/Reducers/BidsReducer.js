@@ -2,12 +2,12 @@ import {
   SET_BID_NAME,
   SET_BID_PHONE,
   SET_BID_POLICY_AGREEMENT,
-  TOGGLE_IS_BID_FETCHING,
-  TOGGLE_IS_BID_FETCH_ERROR,
+  REQUEST_BIDS_DATA,
+  REQUEST_BIDS_DATA_FAILED,
   SET_BID_CREATE_RESPONSE,
   RESET_BID_CREATE_RESPONSE,
   RESET_BID_FORM,
-  SET_TOTAL_BIDS,
+  SET_TOTAL_BIDS_SUCCEDED,
 } from "../ActionTypes/BidsActions";
 
 const initState = {
@@ -32,17 +32,18 @@ const bidsReducer = (state = initState, action) => {
     case SET_BID_POLICY_AGREEMENT:
       return { ...state, bidPolicyAgreement: action.bidPolicyAgreement };
 
-    case TOGGLE_IS_BID_FETCHING:
-      return { ...state, isBidFetching: action.isBidFetching };
+    case REQUEST_BIDS_DATA:
+      return { ...state, isBidFetching: true, isBidFetchError: false };
 
-    case TOGGLE_IS_BID_FETCH_ERROR:
-      return { ...state, isBidFetchError: action.isBidFetchError };
+    case REQUEST_BIDS_DATA_FAILED:
+      return { ...state, isBidFetching: false, isBidFetchError: true };
 
     case SET_BID_CREATE_RESPONSE:
       return {
         ...state,
         bidCreateMessage: action.bidCreateMessage,
         bidCreateErrors: action.bidCreateErrors,
+        isBidFetching: false,
       };
 
     case RESET_BID_CREATE_RESPONSE:
@@ -60,8 +61,8 @@ const bidsReducer = (state = initState, action) => {
         bidPolicyAgreement: false,
       };
 
-    case SET_TOTAL_BIDS:
-      return { ...state, totalBids: action.totalBids };
+    case SET_TOTAL_BIDS_SUCCEDED:
+      return { ...state, totalBids: action.totalBids, isBidFetching: false };
 
     default:
       return state;

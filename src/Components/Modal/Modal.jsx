@@ -2,7 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 
-import "./Modal.css";
+import closeImage from "./assets/multiply-black.png";
+
+import "./Modal.scss";
 
 const Modal = ({ children, onClose }) => {
 	const portal = document.createElement("div");
@@ -22,7 +24,7 @@ const Modal = ({ children, onClose }) => {
 		<div className="modal-overlay" onClick={onClose}>
 			<div className="modal-window" onClick={(e) => e.stopPropagation()}>
 				<button className="modal-close" onClick={onClose}>
-					&#128939;
+					<img src={closeImage} alt="Close button" />
 				</button>
 				{children}
 			</div>

@@ -1,0 +1,62 @@
+@import "../../../../scss/variables";
+
+.logo {
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+
+  &__link {
+    padding: 20px 45px 14px;
+    background-color: $white;
+    font-family: "Oswald", sans-serif;
+    transform: skewX(-10deg);
+
+    @media screen and (max-width: 767px) {
+      padding: 15px 30px 10px;
+    }
+
+    @media screen and (max-width: 575px) {
+      padding: 10px 10px 7px;
+    }
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &__title {
+    color: $dark;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 2.5rem;
+    text-transform: uppercase;
+
+    @media screen and (max-width: 767px) {
+      font-size: 2.5rem;
+      line-height: 2rem;
+    }
+
+    @media screen and (max-width: 575px) {
+      font-size: 2rem;
+      line-height: 1.6rem;
+    }
+  }
+
+  &__subtitle {
+    color: $red-main-darken;
+    font-size: 1.625rem;
+    font-weight: 700;
+    line-height: 2.5rem;
+    letter-spacing: 2.5px;
+
+    @media screen and (max-width: 767px) {
+      font-size: 1.3rem;
+      line-height: 2rem;
+    }
+
+    @media screen and (max-width: 575px) {
+      font-size: 1rem;
+      line-height: 1.5rem;
+    }
+  }
+}

@@ -98,6 +98,8 @@ const ScrollList = ({ children, data, chunkSize }) => {
 
   const listItems = children;
 
+  if (!listItems) return null;
+
   return (
     <div className="scroll-list">
       {listItems(itemsToShow)}
@@ -105,13 +107,14 @@ const ScrollList = ({ children, data, chunkSize }) => {
       {isLoading && <LinearLoader classname="linear-loader-bg--red" />}
 
       {!isLoading && isItemsToShow && (
-        <div ref={setTriggerElement} className="scroll-trigger"></div>
+        <div ref={setTriggerElement} className="scroll-trigger" />
       )}
     </div>
   );
 };
 
 ScrollList.propTypes = {
+  children: PropTypes.func,
   data: PropTypes.array,
   chunkSize: PropTypes.number,
 };

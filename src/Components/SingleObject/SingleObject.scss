@@ -1,0 +1,334 @@
+@import "../../scss/variables";
+
+.object {
+  margin-top: 30px;
+  display: flex;
+  box-shadow: 4px 7px 35px $gray-cold-transparent;
+  background-color: $white;
+
+  @media screen and (max-width: 991px) {
+    flex-direction: column-reverse;
+  }
+
+  &__photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-right: 1px solid $gray-pale;
+
+    @media screen and (max-width: 991px) {
+      padding: 20px;
+      border-right: none;
+      border-top: 1px solid $gray-pale;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  &__description {
+    min-width: 370px;
+    padding: 40px 30px;
+
+    @media screen and (max-width: 991px) {
+      min-width: auto;
+      padding: 30px 25px;
+    }
+
+    @media screen and (max-width: 575px) {
+      padding: 20px 20px;
+    }
+
+    &-sector {
+      margin-bottom: 15px;
+      color: $blue;
+
+      @media screen and (max-width: 991px) {
+        margin-bottom: 10px;
+      }
+
+      @media screen and (max-width: 575px) {
+        margin-bottom: 10px;
+      }
+    }
+
+    &-name {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid $gray-pale;
+
+      @media screen and (max-width: 991px) {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      @media screen and (max-width: 575px) {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+      }
+    }
+
+    &-info {
+      @media screen and (max-width: 575px) {
+        max-width: 200px;
+      }
+    }
+
+    &-title {
+      margin-bottom: 5px;
+      color: $dark;
+      font-size: 1.5rem;
+      font-weight: 500;
+      line-height: 1.5;
+
+      @media screen and (max-width: 575px) {
+        font-size: 20px;
+      }
+    }
+
+    &-art {
+      margin-bottom: 10px;
+      color: $gray;
+      font-size: 0.875rem;
+      font-weight: 500;
+
+      @media screen and (max-width: 991px) {
+        margin-bottom: 0;
+      }
+
+      @media screen and (max-width: 575px) {
+        font-size: 0.75rem;
+      }
+    }
+
+    &-details {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid $gray-pale;
+
+      @media screen and (max-width: 991px) {
+        justify-content: space-around;
+        padding-bottom: 15px;
+      }
+
+      @media screen and (max-width: 575px) {
+        justify-content: space-between;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+      }
+
+      &-item {
+        text-align: center;
+      }
+
+      &-definition {
+        margin-bottom: 15px;
+        color: $gray;
+        font-size: 0.75rem;
+        font-weight: 500;
+
+        @media screen and (max-width: 991px) {
+          margin-bottom: 10px;
+          font-size: 0.875rem;
+        }
+
+        @media screen and (max-width: 575px) {
+          margin-bottom: 5px;
+          font-size: 0.75rem;
+        }
+      }
+
+      &-value {
+        color: $dark;
+        font-size: 1.25rem;
+        font-weight: 700;
+
+        @media screen and (max-width: 575px) {
+          font-size: 1.125rem;
+        }
+      }
+    }
+  }
+
+  &__favourite-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 20px;
+    border: 3px solid $gray-pale;
+    border-radius: 23px;
+    background-color: $white;
+    color: $gray;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-align: center;
+    transition: all 0.2s ease-in;
+    cursor: pointer;
+
+    @media screen and (max-width: 991px) {
+      padding: 0;
+      border: none;
+    }
+
+    &:hover,
+    &:focus-visible {
+      outline: none;
+      border-color: $red-main-darken;
+      color: $red-main-darken;
+
+      .object__favourite-button-icon {
+        color: $red-main-darken;
+      }
+    }
+
+    span {
+      @media screen and (max-width: 991px) {
+        display: none;
+      }
+    }
+
+    &-icon {
+      width: 24px;
+      margin-right: 10px;
+      color: $gray-light;
+      transition: all 0.2s ease-in;
+
+      @media screen and (max-width: 991px) {
+        width: 42px;
+      }
+
+      @media screen and (max-width: 575px) {
+        width: 28px;
+      }
+    }
+
+    &--active {
+      border-color: $red-main-pale;
+      background-color: $red-main-darken;
+      color: $white;
+
+      @media screen and (max-width: 991px) {
+        border-color: transparent;
+        background-color: transparent;
+      }
+
+      &:hover,
+      &:focus-visible {
+        color: $white;
+        opacity: 0.7;
+
+        .object__favourite-button-icon {
+          color: $white;
+
+          @media screen and (max-width: 991px) {
+            color: $red-main-darken;
+          }
+        }
+      }
+
+      .object__favourite-button-icon {
+        color: $white;
+
+        @media screen and (max-width: 991px) {
+          color: $red-main-darken;
+        }
+      }
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+
+    &-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+
+      @media screen and (max-width: 991px) {
+        padding-bottom: 15px;
+      }
+    }
+
+    &-name {
+      color: $gray;
+      font-size: 0.875rem;
+      font-weight: 500;
+
+      @media screen and (max-width: 991px) {
+        font-size: 1rem;
+      }
+
+      @media screen and (max-width: 575px) {
+        font-size: 0.875rem;
+      }
+    }
+
+    &-value {
+      color: $dark;
+      font-size: 1rem;
+      font-weight: 500;
+
+      &--price {
+        color: $red-main-darken;
+        font-size: 1.5rem;
+        font-weight: 600;
+
+        @media screen and (max-width: 575px) {
+          font-size: 1.25rem;
+        }
+      }
+    }
+  }
+
+  &__order-button {
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 32px;
+    background-color: $red-main-darken;
+    color: $white;
+    font-size: 1.375rem;
+    font-weight: 700;
+    text-align: center;
+    transition: all 0.2s ease-in;
+    cursor: pointer;
+
+    @media screen and (max-width: 991px) {
+      width: auto;
+      margin-left: auto;
+      font-size: 1.125rem;
+    }
+
+    @media screen and (max-width: 575px) {
+      margin: 0 auto;
+      padding: 5px 15px;
+      font-size: 0.875rem;
+    }
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    &:active {
+      background-color: $red-main-darken;
+      opacity: 1;
+    }
+
+    &:focus-visible {
+      outline: none;
+      opacity: 0.7;
+    }
+  }
+}

@@ -1,0 +1,40 @@
+@import "../../scss/variables";
+
+.back-to-results {
+  padding: 15px 0;
+  text-align: center;
+
+  &__btn {
+    display: inline-block;
+    color: $dark;
+    font-size: 1.125rem;
+    font-weight: 700;
+    text-align: center;
+    transition: color 0.5s;
+
+    @media screen and (max-width: 575px) {
+      font-size: 0.875rem;
+    }
+
+    &:hover {
+      color: $blue;
+      text-decoration: none;
+    }
+
+    &:focus {
+      outline: none;
+      color: $blue;
+    }
+  }
+}
+
+.reservation-succeed-notice {
+  padding: 40px;
+  font-size: 1.125rem;
+  text-align: center;
+
+  @media screen and (max-width: 991px) {
+    padding: 20px;
+    font-size: 1rem;
+  }
+}

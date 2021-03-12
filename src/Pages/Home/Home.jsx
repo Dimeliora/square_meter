@@ -1,10 +1,10 @@
-import './Home.css';
+import "./Home.scss";
 
 const Home = () => {
   return (
     <div className="home">
-      <div className="container content-wrapper relative">
-        <h1 className="home-heading">Квадратный метр...</h1>
+      <div className="container">
+        <div className="content-wrapper"></div>
       </div>
     </div>
   );

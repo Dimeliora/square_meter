@@ -1,0 +1,57 @@
+@import "../../scss/variables";
+
+.error-notification {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+
+  &__heading {
+    font-size: 3rem;
+    text-transform: uppercase;
+
+    @media screen and (max-width: 767px) {
+      font-size: 2rem;
+    }
+
+    @media screen and (max-width: 575px) {
+      font-size: 1.75rem;
+    }
+  }
+
+  &__subheading {
+    @media screen and (max-width: 767px) {
+      font-size: 1.2rem;
+    }
+
+    @media screen and (max-width: 575px) {
+      font-size: 1rem;
+    }
+  }
+
+  &__button {
+    margin-top: 20px;
+    padding: 8px 20px;
+    border: 2px solid $red-main;
+    border-radius: 32px;
+    background-color: $red-main;
+    color: $white;
+    font-size: 1.125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: all 0.3s 0.1s ease-in;
+
+    @media screen and (max-width: 575px) {
+      font-size: 0.75rem;
+    }
+
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: transparent;
+      color: $red-main;
+    }
+  }
+}

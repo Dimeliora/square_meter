@@ -1,0 +1,37 @@
+@import "../../scss/variables";
+
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 99;
+  width: 100%;
+  background-color: $black-transparent;
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 82px;
+    padding: 20px 0;
+    color: $white;
+    font-size: 0.9rem;
+    font-weight: 400;
+    text-align: center;
+
+    @media screen and (max-width: 767px) {
+      flex-direction: column;
+      padding: 10px 0;
+    }
+
+    @media screen and (max-width: 575px) {
+      font-size: 0.8rem;
+    }
+  }
+
+  &__copy {
+    @media screen and (max-width: 767px) {
+      margin-top: 5px;
+    }
+  }
+}

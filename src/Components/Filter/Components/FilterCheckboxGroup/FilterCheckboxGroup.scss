@@ -1,0 +1,58 @@
+@import "../../../../scss/variables";
+
+.filter__rooms {
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 265px;
+
+  &-item {
+    margin-right: 10px;
+
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+
+  &-btn {
+    width: 45px;
+    height: 45px;
+    background-color: $gray-pale;
+    color: $dark;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 45px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+
+    @media (max-width: 575px) {
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+    }
+
+    &:hover {
+      background-color: $red-main-pale;
+    }
+  }
+
+  &-checkbox {
+    position: absolute;
+    appearance: none;
+
+    &:focus-visible + .filter__rooms-btn {
+      outline: 2px solid;
+    }
+
+    &--active {
+      & + .filter__rooms-btn {
+        background-color: $red-main;
+        color: $white;
+      }
+
+      &:hover + .filter__rooms-btn {
+        opacity: 0.8;
+      }
+    }
+  }
+}

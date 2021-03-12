@@ -1,0 +1,17 @@
+@import "../../../../scss/variables";
+
+.filter__dropdown {
+  width: 200px;
+  height: 45px;
+  padding-left: 10px;
+  background-color: $gray-pale;
+  color: $dark;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+
+  @media (max-width: 575px) {
+    height: 30px;
+    font-size: 0.9rem;
+  }
+}

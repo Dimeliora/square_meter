@@ -1,0 +1,36 @@
+@import "../../scss/variables";
+
+.to-top-button {
+  position: fixed;
+  bottom: 15vh;
+  right: -100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  padding: 5px;
+  border-radius: 8px;
+  background-color: transparent;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: background-color 0.3s ease-in-out;
+  animation: showButton 0.5s ease-in-out forwards;
+
+  @media screen and (max-width: 575px) {
+    background-color: $gray-light;
+  }
+
+  &:hover {
+    background-color: $gray-light;
+  }
+}
+
+@keyframes showButton {
+  from {
+    right: -100px;
+  }
+  to {
+    right: 20px;
+  }
+}

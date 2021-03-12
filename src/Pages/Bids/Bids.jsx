@@ -7,7 +7,7 @@ import Heading from "../../Components/Heading";
 import ScrollList from "../../Components/ScrollList";
 import BidsListItem from "../../Components/BidsListItem";
 
-import "./Bids.css";
+import "./Bids.scss";
 
 const Bids = ({ isBidFetchError, totalBids, getBids }) => {
   React.useEffect(() => {
@@ -21,15 +21,21 @@ const Bids = ({ isBidFetchError, totalBids, getBids }) => {
   if (!isBidFetchError && !totalBids) return <Loader />;
 
   return (
-    <div className="container content-wrapper">
-      <Heading classname="mb-3">Все заявки</Heading>
-      <ScrollList data={totalBids} chunkSize={15}>
-        {(data) =>
-          data.map(({ id, name, phone }) => (
-            <BidsListItem key={id} id={id} name={name} phone={phone} />
-          ))
-        }
-      </ScrollList>
+    <div className="bids">
+      <div className="container">
+        <div className="content-wrapper">
+          <Heading>Заявки</Heading>
+          <div className="bids-wrapper">
+            <ScrollList data={totalBids} chunkSize={15}>
+              {(data) =>
+                data.map(({ id, name, phone }) => (
+                  <BidsListItem key={id} id={id} name={name} phone={phone} />
+                ))
+              }
+            </ScrollList>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

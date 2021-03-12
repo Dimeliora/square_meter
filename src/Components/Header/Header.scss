@@ -1,0 +1,173 @@
+@import "../../scss/variables";
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  width: 100%;
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+  }
+
+  &__title {
+    font-size: 1rem;
+
+    @media screen and (max-width: 991px) {
+      position: relative;
+      z-index: 299;
+      font-size: 0.9rem;
+    }
+
+    @media screen and (max-width: 991px) {
+      width: 140px;
+      font-size: 0.8rem;
+    }
+  }
+
+  &__navbar {
+    height: 58px;
+    padding: 0 20px;
+    background-color: $black-transparent;
+    color: $white;
+    font-size: 1rem;
+    font-weight: 700;
+
+    @media screen and (max-width: 575px) {
+      padding: 0 12px;
+    }
+  }
+
+  &__menu {
+    @media screen and (max-width: 767px) {
+      position: fixed;
+      top: 0;
+      left: -1000px;
+      z-index: 199;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 75%;
+      height: 100vh;
+      background-color: $black-transparent;
+    }
+
+    &--active {
+      @media screen and (max-width: 767px) {
+        left: 0;
+        transition: left 0.3s ease-in-out;
+      }
+    }
+
+    &-wrapper {
+      @media screen and (max-width: 767px) {
+        display: flex;
+        flex-direction: column;
+        transition: left 0.3s ease-in-out 0.1s;
+      }
+    }
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 30px;
+    border: none;
+    background-color: transparent;
+    color: $white;
+    transition: color 0.3s ease-in-out;
+
+    @media screen and (max-width: 991px) {
+      margin-right: 20px;
+      font-size: 0.9rem;
+    }
+
+    @media screen and (max-width: 767px) {
+      margin: 0;
+      margin-bottom: 50px;
+      font-size: 1.3rem;
+    }
+
+    @media screen and (max-width: 575px) {
+      font-size: 1.1rem;
+    }
+
+    &:last-child {
+      margin-right: 0;
+
+      @media screen and (max-width: 991px) {
+        margin-right: 0;
+      }
+
+      @media screen and (max-width: 767px) {
+        margin-bottom: 0;
+      }
+    }
+
+    &:hover {
+      color: $yellow-pale;
+      text-decoration: none;
+    }
+
+    &--active {
+      color: $yellow;
+
+      &:hover {
+        color: $yellow;
+      }
+    }
+  }
+
+  &__menu-button {
+    display: none;
+
+    @media screen and (max-width: 767px) {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 28px;
+      height: 20px;
+      cursor: pointer;
+    }
+
+    &:hover span {
+      @media screen and (max-width: 767px) {
+        background-color: $yellow;
+      }
+    }
+
+    span {
+      @media screen and (max-width: 767px) {
+        display: block;
+        height: 2px;
+        background-color: $white;
+        transition: transform 0.25s ease-in-out,
+          background-color 0.3s ease-in-out;
+      }
+    }
+
+    &--active span {
+      &:nth-child(1) {
+        @media screen and (max-width: 767px) {
+          transform: translate(-5px, 8px) rotate(45deg);
+        }
+      }
+
+      &:nth-child(2) {
+        @media screen and (max-width: 767px) {
+          transform: scale(0);
+        }
+      }
+
+      &:nth-child(3) {
+        @media screen and (max-width: 767px) {
+          transform: translate(-5px, -10px) rotate(-45deg);
+        }
+      }
+    }
+  }
+}

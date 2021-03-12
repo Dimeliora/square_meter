@@ -4,22 +4,20 @@ import {
   SET_BID_NAME,
   SET_BID_PHONE,
   SET_BID_POLICY_AGREEMENT,
-  TOGGLE_IS_BID_FETCHING,
-  TOGGLE_IS_BID_FETCH_ERROR,
+  REQUEST_BIDS_DATA,
+  REQUEST_BIDS_DATA_FAILED,
   SET_BID_CREATE_RESPONSE,
   RESET_BID_CREATE_RESPONSE,
   RESET_BID_FORM,
-  SET_TOTAL_BIDS,
+  SET_TOTAL_BIDS_SUCCEDED,
 } from "../ActionTypes/BidsActions";
 
-const toggleIsBidFetching = (isBidFetching) => ({
-  type: TOGGLE_IS_BID_FETCHING,
-  isBidFetching,
+const requestBidsData = () => ({
+  type: REQUEST_BIDS_DATA,
 });
 
-const toggleIsBidFetchError = (isBidFetchError) => ({
-  type: TOGGLE_IS_BID_FETCH_ERROR,
-  isBidFetchError,
+const requestBidsDataFailed = () => ({
+  type: REQUEST_BIDS_DATA_FAILED,
 });
 
 const setBidCreateResponse = ({ message, errors }) => ({
@@ -28,8 +26,8 @@ const setBidCreateResponse = ({ message, errors }) => ({
   bidCreateErrors: errors,
 });
 
-const setBids = (totalBids) => ({
-  type: SET_TOTAL_BIDS,
+const setTotalBidsSucceded = (totalBids) => ({
+  type: SET_TOTAL_BIDS_SUCCEDED,
   totalBids,
 });
 
@@ -52,29 +50,24 @@ export const resetBidForm = () => ({
 
 export const sendBidData = (bidData) => async (dispatch) => {
   try {
-    dispatch(toggleIsBidFetching(true));
+    dispatch(requestBidsData());
 
     const bidCreateResponse = await Axios.post("/bidnew", bidData);
 
     dispatch(setBidCreateResponse(bidCreateResponse));
   } catch (err) {
-    console.error(err);
-  } finally {
-    dispatch(toggleIsBidFetching(false));
+    dispatch(requestBidsDataFailed());
   }
 };
 
 export const getBids = () => async (dispatch) => {
   try {
-    dispatch(toggleIsBidFetchError(false));
-    dispatch(toggleIsBidFetching(true));
+    dispatch(requestBidsData());
 
     const totalBids = await Axios.get("/bids");
 
-    dispatch(setBids(totalBids));
+    dispatch(setTotalBidsSucceded(totalBids));
   } catch (err) {
-    dispatch(toggleIsBidFetchError(true));
-  } finally {
-    dispatch(toggleIsBidFetching(false));
+    dispatch(requestBidsDataFailed());
   }
 };

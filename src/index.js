@@ -1,14 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
 
-import store from './Store/Store';
+import store from "./Store/Store";
 
-import App from './Components/App';
+import App from "./Components/App";
 
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import './index.css';
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "./index.scss";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -18,5 +18,5 @@ ReactDOM.render(
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,
-  document.querySelector('#root'),
+  document.querySelector("#root")
 );

@@ -1,10 +1,17 @@
-import './Footer.css';
+import "./Footer.scss";
 
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="container">
-        <p>Учебный проект школы ВебКадеми.рф с курса "JavaScript разработка"</p>
+        <div className="footer__wrapper">
+          <div className="footer__info">
+            На базе учебного проекта Webcademy
+            <br />
+            Курс "JavaScript разработка"
+          </div>
+          <div className="footer__copy">Dimeliora &copy; 2021</div>
+        </div>
       </div>
     </footer>
   );

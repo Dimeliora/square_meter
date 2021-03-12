@@ -1,7 +1,7 @@
 import cn from "classnames";
 import PropTypes from "prop-types";
 
-import "./LinearLoader.css";
+import "./LinearLoader.scss";
 
 const LinearLoader = ({ classname }) => {
   return (

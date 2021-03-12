@@ -1,37 +1,55 @@
+import { useState, useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import Header from "../Header";
-import Logo from "../Logo";
-import Footer from "../Footer";
+import ROUTES from "../../configs/routes";
 
-import Home from "../../Pages/Home";
-import ObjectsContainer from "../../Containers/PageContainers/ObjectsContainer";
-import ChosenObjectContainer from "../../Containers/PageContainers/ChosenObjectContainer";
-import FavouritesContainer from "../../Containers/PageContainers/FavouritesContainer";
-import BidsContainer from "../../Containers/PageContainers/BidsContainer";
+import ToTopButton from "../ToTopButton";
+import Header from "../Header";
+import Footer from "../Footer";
 import ErrorPage from "../../Pages/ErrorPage";
 
-import "./App.css";
+import "./App.scss";
 
 const App = () => {
+  const [isToTopBtnVisible, setToTopBtnVisible] = useState(false);
+
+  useEffect(() => {
+    const handlePageScroll = () => {
+      if (window.pageYOffset > 500) {
+        setToTopBtnVisible(true);
+      } else {
+        setToTopBtnVisible(false);
+      }
+    };
+
+    window.addEventListener("scroll", handlePageScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handlePageScroll);
+    };
+  }, []);
+
   return (
     <div className="app-wrapper">
       <Switch>
         <Route path="/404" component={ErrorPage} />
         <Route>
           <Header />
-          <Logo />
           <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/objects" component={ObjectsContainer} />
-            <Route path="/objects/:id" component={ChosenObjectContainer} />
-            <Route path="/favoirites" component={FavouritesContainer} />
-            <Route path="/bids" component={BidsContainer} />
+            {ROUTES.map(({ name, href, component, isExact }) => (
+              <Route
+                key={name}
+                exact={isExact}
+                path={href}
+                component={component}
+              />
+            ))}
             <Route render={() => <Redirect to="404" />} />
           </Switch>
           <Footer />
         </Route>
       </Switch>
+      {isToTopBtnVisible && <ToTopButton />}
     </div>
   );
 };
