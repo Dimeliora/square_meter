@@ -1,11 +1,36 @@
 import axios from "axios";
 
-const Axios = axios.create({
-	baseURL: "http://jsproject.webcademy.ru",
-});
+class SquareMeterService {
+  static BASE_URL = "http://jsproject.webcademy.ru";
 
-const ejectData = (response) => response.data;
+  constructor() {
+    this.squareMeterService = axios.create({
+      baseURL: SquareMeterService.BASE_URL,
+    });
+    this.squareMeterService.interceptors.response.use(
+      (response) => response.data
+    );
+  }
 
-Axios.interceptors.response.use(ejectData);
+  getItemsInfo() {
+    return this.squareMeterService.get("/itemsinfo");
+  }
 
-export default Axios;
+  getItems(params = {}) {
+    return this.squareMeterService.get("/items", { params });
+  }
+
+  getSingleItems(id) {
+    return this.squareMeterService.get(`/items/${id}`);
+  }
+
+  getBids() {
+    return this.squareMeterService.get("/bids");
+  }
+
+  sendBid(bidData) {
+    return this.squareMeterService.post(`/bidnew/`, bidData);
+  }
+}
+
+export default new SquareMeterService();

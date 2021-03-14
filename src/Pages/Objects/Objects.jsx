@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 
 import INITIAL_FILTER_VALUES from "../../configs/initialFilterValues";
@@ -25,26 +25,26 @@ const Objects = (props) => {
     toggleObjectAsFavourite,
   } = props;
 
-  const [isFilterApplied, setIsFilterApplied] = React.useState(true);
-  const [objectsToShow, setObjectsToShow] = React.useState([]);
-  const [sortParams, setSortParams] = React.useState({
+  const [isFilterApplied, setIsFilterApplied] = useState(true);
+  const [objectsToShow, setObjectsToShow] = useState([]);
+  const [sortParams, setSortParams] = useState({
     sorterName: null,
     isAscending: true,
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!filterSettings) {
       getInitData();
     }
   }, [filterSettings]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (totalObjects) {
       getFilteredData(filterValues);
     }
   }, [filterValues]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (totalObjects && isFilterApplied) {
       setObjectsToShow(totalObjects);
     }
@@ -64,7 +64,7 @@ const Objects = (props) => {
     setIsFilterApplied(true);
   };
 
-  const onSortObjects = React.useCallback((sorterName) => {
+  const onSortObjects = useCallback((sorterName) => {
     setSortParams((prevState) => ({
       sorterName,
       isAscending:
@@ -95,7 +95,7 @@ const Objects = (props) => {
   const totalObjectsAmount = totalObjects?.length || 0;
 
   return (
-    <div className="objects">
+    <section className="objects">
       <div className="container">
         <div className="content-wrapper">
           <Heading>Выбор квартир</Heading>
@@ -121,7 +121,7 @@ const Objects = (props) => {
           />
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

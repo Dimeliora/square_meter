@@ -1,6 +1,8 @@
 @import "../../../../scss/variables";
 
 .logo {
+  position: relative;
+  top: 58px;
   padding: 20px 0;
   display: flex;
   justify-content: center;

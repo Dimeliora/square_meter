@@ -1,4 +1,4 @@
-import React from "react";
+import {memo} from "react";
 import cn from "classnames";
 import PropTypes from "prop-types";
 
@@ -45,4 +45,4 @@ FilterCheckboxGroup.defaultProps = {
 	onInputChange: () => {},
 };
 
-export default React.memo(FilterCheckboxGroup);
+export default memo(FilterCheckboxGroup);

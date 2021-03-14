@@ -1,4 +1,4 @@
-import Axios from "../../services/axios";
+import squareMeterService from "../../services/axios";
 
 import {
   REQUEST_OBJECTS_DATA,
@@ -53,8 +53,8 @@ export const getInitData = () => async (dispatch) => {
     dispatch(requestObjectsData());
 
     const [filterSettings, totalObjects] = await Promise.all([
-      Axios.get("/itemsinfo"),
-      Axios.get("/items"),
+      squareMeterService.getItemsInfo(),
+      squareMeterService.getItems(),
     ]);
 
     dispatch(getInitDataSucceded(filterSettings, totalObjects));
@@ -72,7 +72,7 @@ export const getFilteredData = (filterValues) => async (dispatch) => {
   try {
     dispatch(requestObjectsData());
 
-    const totalObjects = await Axios.get(`/items`, { params });
+    const totalObjects = await squareMeterService.getItems(params);
 
     dispatch(getFilteredDataSucceded(totalObjects));
   } catch (err) {
@@ -84,7 +84,7 @@ export const getChosenObject = (id) => async (dispatch) => {
   try {
     dispatch(requestChosenObject());
 
-    const chosenObject = await Axios.get(`/items/${id}`);
+    const chosenObject = await squareMeterService.getSingleItems(id);
 
     dispatch(getChosenObjectSucceded(chosenObject));
   } catch (err) {

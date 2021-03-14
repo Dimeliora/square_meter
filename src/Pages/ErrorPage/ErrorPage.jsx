@@ -10,7 +10,7 @@ const ErrorPage = () => {
   };
 
   return (
-    <div className="error-page">
+    <section className="error-page">
       <div className="container">
         <h1 className="error-page__heading">404</h1>
         <h2 className="error-page__subheading">
@@ -20,7 +20,7 @@ const ErrorPage = () => {
           Вернуться на главную страницу
         </button>
       </div>
-    </div>
+    </section>
   );
 };
 

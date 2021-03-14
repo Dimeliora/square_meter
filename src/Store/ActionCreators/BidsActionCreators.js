@@ -1,4 +1,4 @@
-import Axios from "../../services/axios";
+import squareMeterService from "../../services/axios";
 
 import {
   SET_BID_NAME,
@@ -52,7 +52,7 @@ export const sendBidData = (bidData) => async (dispatch) => {
   try {
     dispatch(requestBidsData());
 
-    const bidCreateResponse = await Axios.post("/bidnew", bidData);
+    const bidCreateResponse = await squareMeterService.sendBid(bidData);
 
     dispatch(setBidCreateResponse(bidCreateResponse));
   } catch (err) {
@@ -64,7 +64,7 @@ export const getBids = () => async (dispatch) => {
   try {
     dispatch(requestBidsData());
 
-    const totalBids = await Axios.get("/bids");
+    const totalBids = await squareMeterService.getBids();
 
     dispatch(setTotalBidsSucceded(totalBids));
   } catch (err) {

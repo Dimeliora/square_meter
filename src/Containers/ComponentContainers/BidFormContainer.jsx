@@ -1,4 +1,4 @@
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 import {
   setBidName,
@@ -7,9 +7,9 @@ import {
   sendBidData,
   resetBidCreateResponse,
   resetBidForm,
-} from '../../Store/ActionCreators/BidsActionCreators';
+} from "../../Store/ActionCreators/BidsActionCreators";
 
-import BidForm from '../../Components/BidForm';
+import BidForm from "../../Components/BidForm";
 
 const mapStateToProps = (state) => ({
   bidName: state.bids.bidName,
@@ -20,13 +20,15 @@ const mapStateToProps = (state) => ({
   bidCreateErrors: state.bids.bidCreateErrors,
 });
 
-const BidFormContainer = connect(mapStateToProps, {
+const mapDispatchToProps = {
   setBidName,
   setBidPhone,
   setBidPolicyAgreement,
   sendBidData,
   resetBidCreateResponse,
   resetBidForm,
-})(BidForm);
+};
+
+const BidFormContainer = connect(mapStateToProps, mapDispatchToProps)(BidForm);
 
 export default BidFormContainer;

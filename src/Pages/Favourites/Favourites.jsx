@@ -28,13 +28,13 @@ const Favourites = (props) => {
   );
 
   return (
-    <div className="favourites">
+    <section className="favourites">
       <div className="container ">
         <div className="content-wrapper">
           {areFavouriteObjects ? favouritesContent : noFavouritesNotice}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -1,4 +1,4 @@
-import React from "react";
+import {memo} from "react";
 import PropTypes from "prop-types";
 
 import "./FilterDropdown.scss";
@@ -37,4 +37,4 @@ FilterDropdown.defaultProps = {
 	onInputChange: () => {},
 };
 
-export default React.memo(FilterDropdown);
+export default memo(FilterDropdown);

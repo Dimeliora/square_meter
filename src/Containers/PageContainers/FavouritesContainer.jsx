@@ -8,8 +8,13 @@ const mapStateToProps = (state) => ({
   favouriteObjects: state.favourites.favourites,
 });
 
-const FavouritesContainer = connect(mapStateToProps, {
+const mapDispatchToProps = {
   toggleObjectAsFavourite,
-})(Favourites);
+};
+
+const FavouritesContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Favourites);
 
 export default FavouritesContainer;

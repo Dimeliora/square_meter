@@ -17,7 +17,7 @@ const store = createStore(
   load({ states: ['favourites'] }),
   compose(
     applyMiddleware(thunk, save({ states: ['favourites'], debounce: 1000 })),
-    window.__REDUX_DEVTOOLS_EXTENSION__(),
+    // window.__REDUX_DEVTOOLS_EXTENSION__(),
   ),
 );
 

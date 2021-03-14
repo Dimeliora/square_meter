@@ -1,4 +1,4 @@
-import React from "react";
+import { useReducer, useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 
 import LinearLoader from "../Preloaders/LinearLoader";
@@ -42,7 +42,7 @@ const setShow = (newChunk, newItemsToShow, isMoreToShow) => ({
 });
 
 const ScrollList = ({ children, data, chunkSize }) => {
-  const [state, dispatch] = React.useReducer(scrollListReducer, initialState());
+  const [state, dispatch] = useReducer(scrollListReducer, initialState());
   const { isLoading, isItemsToShow, currentChunk, itemsToShow } = state;
 
   const update = () => {
@@ -55,7 +55,7 @@ const ScrollList = ({ children, data, chunkSize }) => {
     return { newChunk, newItemsToShow, isMoreToShow };
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const { newChunk, newItemsToShow, isMoreToShow } = update();
     dispatch(setShow(newChunk, newItemsToShow, isMoreToShow));
   }, []);
@@ -68,11 +68,11 @@ const ScrollList = ({ children, data, chunkSize }) => {
     }, 500);
   };
 
-  const [triggerElement, setTriggerElement] = React.useState(null);
+  const loadHandler = useRef(loadData);
 
-  const loadHandler = React.useRef(loadData);
+  const [triggerElement, setTriggerElement] = useState(null);
 
-  const observer = React.useRef(
+  const observer = useRef(
     new IntersectionObserver(
       (entries) => {
         const trigger = entries[0];
@@ -80,11 +80,14 @@ const ScrollList = ({ children, data, chunkSize }) => {
           loadHandler.current();
         }
       },
-      { treshold: 1.0 }
+      {
+        treshold: 1.0,
+        rootMargin: "150px",
+      }
     )
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     const currentObserver = observer;
     if (triggerElement) {
       currentObserver.current.observe(triggerElement);
@@ -92,9 +95,9 @@ const ScrollList = ({ children, data, chunkSize }) => {
     }
   }, [triggerElement]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     loadHandler.current = loadData;
-  }, [currentChunk]);
+  });
 
   const listItems = children;
 

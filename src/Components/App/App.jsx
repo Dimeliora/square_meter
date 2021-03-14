@@ -35,21 +35,23 @@ const App = () => {
         <Route path="/404" component={ErrorPage} />
         <Route>
           <Header />
-          <Switch>
-            {ROUTES.map(({ name, href, component, isExact }) => (
-              <Route
-                key={name}
-                exact={isExact}
-                path={href}
-                component={component}
-              />
-            ))}
-            <Route render={() => <Redirect to="404" />} />
-          </Switch>
+          <main>
+            <Switch>
+              {ROUTES.map(({ name, href, component, isExact }) => (
+                <Route
+                  key={name}
+                  exact={isExact}
+                  path={href}
+                  component={component}
+                />
+              ))}
+              <Route render={() => <Redirect to="404" />} />
+            </Switch>
+          </main>
           <Footer />
         </Route>
       </Switch>
-      {isToTopBtnVisible && <ToTopButton />}
+      <ToTopButton isActive={isToTopBtnVisible} />
     </div>
   );
 };

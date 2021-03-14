@@ -2,11 +2,11 @@ import "./Home.scss";
 
 const Home = () => {
   return (
-    <div className="home">
+    <section className="home">
       <div className="container">
         <div className="content-wrapper"></div>
       </div>
-    </div>
+    </section>
   );
 };
 

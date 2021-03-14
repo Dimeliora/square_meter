@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import cn from "classnames";
 import PropTypes from "prop-types";
 
@@ -31,7 +31,7 @@ const BidForm = (props) => {
 		building = "",
 	} = objectInfo;
 
-	React.useEffect(() => {
+	useEffect(() => {
 		if (bidCreateMessage === "Bid Created") {
 			onBidCreated();
 			resetBidCreateResponse();

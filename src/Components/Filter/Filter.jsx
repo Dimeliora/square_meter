@@ -1,4 +1,4 @@
-import React from "react";
+import { useCallback } from "react";
 import PropTypes from "prop-types";
 
 import FilterDropdown from "./Components/FilterDropdown";
@@ -38,16 +38,16 @@ const Filter = (props) => {
     pricemax = "",
   } = filterValues;
 
-  const onFormStateChange = React.useCallback((e) => {
+  const onFormStateChange = useCallback((e) => {
     const { name, value } = e.target;
     onFilterValuesChange({ name, value });
   }, []);
 
-  const onShowObjects = React.useCallback(() => {
+  const onShowObjects = useCallback(() => {
     onApplyFilter();
   }, []);
 
-  const onResetForm = React.useCallback(() => {
+  const onResetForm = useCallback(() => {
     onResetFilter();
   }, []);
 

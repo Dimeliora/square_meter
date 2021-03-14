@@ -1,4 +1,4 @@
-import React from "react";
+import { memo } from "react";
 import PropTypes from "prop-types";
 
 import ObjectsSortItem from "./Components/ObjectsSortItem";
@@ -41,4 +41,4 @@ ObjectsSorter.defaultProps = {
   onSortObjects: () => {},
 };
 
-export default React.memo(ObjectsSorter);
+export default memo(ObjectsSorter);

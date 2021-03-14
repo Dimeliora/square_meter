@@ -14,8 +14,7 @@
   background-color: transparent;
   cursor: pointer;
   opacity: 0.8;
-  transition: background-color 0.3s ease-in-out;
-  animation: showButton 0.5s ease-in-out forwards;
+  transition: background-color 0.3s ease-in-out, right 0.5s ease-in-out 0.2s;
 
   @media screen and (max-width: 575px) {
     background-color: $gray-light;
@@ -24,13 +23,8 @@
   &:hover {
     background-color: $gray-light;
   }
-}
 
-@keyframes showButton {
-  from {
-    right: -100px;
-  }
-  to {
+  &--active {
     right: 20px;
   }
 }
