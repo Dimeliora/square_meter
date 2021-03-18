@@ -2,13 +2,13 @@ import squareMeterService from "../../services/axios";
 
 import {
   REQUEST_OBJECTS_DATA,
-  GET_INIT_DATA_SUCCEDED,
-  REQUEST_OBJECTS_DATA_FAILED,
-  GET_FILTERED_DATA_SUCCEDED,
+  REQUEST_CHOSEN_OBJECT,
+  REQUEST_DATA_FAILED,
+  REQUEST_INIT_DATA_SUCCEDED,
+  REQUEST_OBJECTS_DATA_SUCCEDED,
   SET_FILTER_INPUT_VALUE,
   SET_INITIAL_FILTER_VALUES,
-  REQUEST_CHOSEN_OBJECT,
-  GET_CHOSEN_OBJECT_SUCCEDED,
+  REQUEST_CHOSEN_OBJECT_SUCCEDED,
 } from "../ActionTypes/ObjectsActions";
 
 const requestObjectsData = () => ({
@@ -19,22 +19,22 @@ const requestChosenObject = () => ({
   type: REQUEST_CHOSEN_OBJECT,
 });
 
-const requestObjectsDataFailed = () => ({
-  type: REQUEST_OBJECTS_DATA_FAILED,
+const requestDataFailed = () => ({
+  type: REQUEST_DATA_FAILED,
 });
 
-const getInitDataSucceded = (filterSettings, totalObjects) => ({
-  type: GET_INIT_DATA_SUCCEDED,
-  payload: { filterSettings, totalObjects },
+const requestInitDataSucceded = (filterSettings) => ({
+  type: REQUEST_INIT_DATA_SUCCEDED,
+  filterSettings,
 });
 
-const getFilteredDataSucceded = (totalObjects) => ({
-  type: GET_FILTERED_DATA_SUCCEDED,
+const requestObjectsDataSucceded = (totalObjects) => ({
+  type: REQUEST_OBJECTS_DATA_SUCCEDED,
   totalObjects,
 });
 
-const getChosenObjectSucceded = (chosenObject) => ({
-  type: GET_CHOSEN_OBJECT_SUCCEDED,
+const requestChosenObjectSucceded = (chosenObject) => ({
+  type: REQUEST_CHOSEN_OBJECT_SUCCEDED,
   chosenObject,
 });
 
@@ -50,20 +50,15 @@ export const setFilterInputValue = (filterInputValue) => ({
 
 export const getInitData = () => async (dispatch) => {
   try {
-    dispatch(requestObjectsData());
+    const filterSettings = await squareMeterService.getItemsInfo();
 
-    const [filterSettings, totalObjects] = await Promise.all([
-      squareMeterService.getItemsInfo(),
-      squareMeterService.getItems(),
-    ]);
-
-    dispatch(getInitDataSucceded(filterSettings, totalObjects));
+    dispatch(requestInitDataSucceded(filterSettings));
   } catch (err) {
-    dispatch(requestObjectsDataFailed());
+    dispatch(requestDataFailed());
   }
 };
 
-export const getFilteredData = (filterValues) => async (dispatch) => {
+export const getObjectsData = (filterValues) => async (dispatch) => {
   const params = Object.entries(filterValues).reduce((acc, [key, value]) => {
     const item = Array.isArray(value) ? value.join(",") : value;
     return item === "" ? acc : { ...acc, [key]: item };
@@ -74,9 +69,9 @@ export const getFilteredData = (filterValues) => async (dispatch) => {
 
     const totalObjects = await squareMeterService.getItems(params);
 
-    dispatch(getFilteredDataSucceded(totalObjects));
+    dispatch(requestObjectsDataSucceded(totalObjects));
   } catch (err) {
-    dispatch(requestObjectsDataFailed());
+    dispatch(requestDataFailed());
   }
 };
 
@@ -84,10 +79,10 @@ export const getChosenObject = (id) => async (dispatch) => {
   try {
     dispatch(requestChosenObject());
 
-    const chosenObject = await squareMeterService.getSingleItems(id);
+    const chosenObject = await squareMeterService.getSingleItem(id);
 
-    dispatch(getChosenObjectSucceded(chosenObject));
+    dispatch(requestChosenObjectSucceded(chosenObject));
   } catch (err) {
-    dispatch(requestObjectsDataFailed());
+    dispatch(requestDataFailed());
   }
 };

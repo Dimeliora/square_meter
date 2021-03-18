@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 import INITIAL_FILTER_VALUES from "../../configs/initialFilterValues";
@@ -21,7 +21,7 @@ const Objects = (props) => {
     getInitData,
     setFilterInputValue,
     setInitialFilterValues,
-    getFilteredData,
+    getObjectsData,
     toggleObjectAsFavourite,
   } = props;
 
@@ -36,13 +36,11 @@ const Objects = (props) => {
     if (!filterSettings) {
       getInitData();
     }
-  }, [filterSettings]);
+  }, [filterSettings, getInitData]);
 
   useEffect(() => {
-    if (totalObjects) {
-      getFilteredData(filterValues);
-    }
-  }, [filterValues]);
+    getObjectsData(filterValues);
+  }, [filterValues, getObjectsData]);
 
   useEffect(() => {
     if (totalObjects && isFilterApplied) {
@@ -64,13 +62,13 @@ const Objects = (props) => {
     setIsFilterApplied(true);
   };
 
-  const onSortObjects = useCallback((sorterName) => {
+  const onSortObjects = (sorterName) => {
     setSortParams((prevState) => ({
       sorterName,
       isAscending:
         sorterName === prevState.sorterName ? !prevState.isAscending : true,
     }));
-  }, []);
+  };
 
   const sortObjectsToShow = (objects, isAscending, sorterName) => {
     if (!sorterName) return objects;

@@ -1,8 +1,9 @@
-import { memo } from "react";
 import cn from "classnames";
 import PropTypes from "prop-types";
 
 import LinearLoader from "../../../Preloaders/LinearLoader";
+
+import { ReactComponent as CloseIcon } from "./assets/close.svg";
 
 import "./FilterButtonsGroup.scss";
 
@@ -29,6 +30,7 @@ const FilterButtonsGroup = (props) => {
     <div className="filter__buttons">
       <button className="filter__reset" type="reset" onClick={onResetForm}>
         Сбросить
+        <CloseIcon />
       </button>
 
       <button
@@ -60,4 +62,4 @@ FilterButtonsGroup.defaultProps = {
   onResetForm: () => {},
 };
 
-export default memo(FilterButtonsGroup);
+export default FilterButtonsGroup;

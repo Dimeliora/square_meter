@@ -20,7 +20,7 @@ class SquareMeterService {
     return this.squareMeterService.get("/items", { params });
   }
 
-  getSingleItems(id) {
+  getSingleItem(id) {
     return this.squareMeterService.get(`/items/${id}`);
   }
 

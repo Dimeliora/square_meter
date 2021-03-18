@@ -3,46 +3,36 @@ import PropTypes from "prop-types";
 
 import LinearLoader from "../Preloaders/LinearLoader";
 
-const LOAD = "LOAD";
-const SHOW = "SHOW";
-
-const initialState = () => ({
+const initialState = (data, chunkSize) => ({
   isLoading: false,
-  isItemsToShow: true,
-  currentChunk: 0,
-  itemsToShow: [],
+  isItemsToShow: data.length > chunkSize,
+  currentChunk: chunkSize,
+  itemsToShow: data.slice(0, chunkSize),
 });
 
 const scrollListReducer = (state, action) => {
   switch (action.type) {
-    case LOAD:
+    case "LOAD":
       return { ...state, isLoading: true };
-    case SHOW:
+    case "SHOW":
+      const { isMoreToShow, newChunk, newItemsToShow } = action.payload;
       return {
         ...state,
         isLoading: false,
-        isItemsToShow: action.isMoreToShow,
-        currentChunk: action.newChunk,
-        itemsToShow: action.newItemsToShow,
+        isItemsToShow: isMoreToShow,
+        currentChunk: newChunk,
+        itemsToShow: newItemsToShow,
       };
     default:
       return state;
   }
 };
 
-const setLoad = () => ({
-  type: LOAD,
-});
-
-const setShow = (newChunk, newItemsToShow, isMoreToShow) => ({
-  type: SHOW,
-  newChunk,
-  newItemsToShow,
-  isMoreToShow,
-});
-
 const ScrollList = ({ children, data, chunkSize }) => {
-  const [state, dispatch] = useReducer(scrollListReducer, initialState());
+  const [state, dispatch] = useReducer(
+    scrollListReducer,
+    initialState(data, chunkSize)
+  );
   const { isLoading, isItemsToShow, currentChunk, itemsToShow } = state;
 
   const update = () => {
@@ -55,16 +45,14 @@ const ScrollList = ({ children, data, chunkSize }) => {
     return { newChunk, newItemsToShow, isMoreToShow };
   };
 
-  useEffect(() => {
-    const { newChunk, newItemsToShow, isMoreToShow } = update();
-    dispatch(setShow(newChunk, newItemsToShow, isMoreToShow));
-  }, []);
-
   const loadData = () => {
-    dispatch(setLoad());
+    dispatch({ type: "LOAD" });
     setTimeout(() => {
       const { newChunk, newItemsToShow, isMoreToShow } = update();
-      dispatch(setShow(newChunk, newItemsToShow, isMoreToShow));
+      dispatch({
+        type: "SHOW",
+        payload: { newChunk, newItemsToShow, isMoreToShow },
+      });
     }, 500);
   };
 
@@ -99,13 +87,13 @@ const ScrollList = ({ children, data, chunkSize }) => {
     loadHandler.current = loadData;
   });
 
-  const listItems = children;
+  const listItemsRenderer = children;
 
-  if (!listItems) return null;
+  if (!listItemsRenderer) return null;
 
   return (
     <div className="scroll-list">
-      {listItems(itemsToShow)}
+      {listItemsRenderer(itemsToShow)}
 
       {isLoading && <LinearLoader classname="linear-loader-bg--red" />}
 

@@ -1,4 +1,3 @@
-import { useCallback } from "react";
 import PropTypes from "prop-types";
 
 import FilterDropdown from "./Components/FilterDropdown";
@@ -38,18 +37,10 @@ const Filter = (props) => {
     pricemax = "",
   } = filterValues;
 
-  const onFormStateChange = useCallback((e) => {
+  const onFormStateChange = (e) => {
     const { name, value } = e.target;
     onFilterValuesChange({ name, value });
-  }, []);
-
-  const onShowObjects = useCallback(() => {
-    onApplyFilter();
-  }, []);
-
-  const onResetForm = useCallback(() => {
-    onResetFilter();
-  }, []);
+  };
 
   return (
     <form className="filter">
@@ -100,8 +91,8 @@ const Filter = (props) => {
         isFetching={isFetching}
         isFilterApplied={isFilterApplied}
         objectsAmount={totalObjectsAmount}
-        onShowObjects={onShowObjects}
-        onResetForm={onResetForm}
+        onShowObjects={onApplyFilter}
+        onResetForm={onResetFilter}
       />
     </form>
   );

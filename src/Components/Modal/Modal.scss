@@ -34,13 +34,20 @@
     right: 0;
     top: 0;
     display: block;
-    padding: 5px 10px;
+    width: 32px;
+    height: 32px;
+    padding: 0;
     border: none;
     background-color: transparent;
     transition: 0.1s background-color ease-in;
 
     &:hover {
-      background-color: $gray-light;
+      background-color: $black-filter;
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
     }
   }
 }

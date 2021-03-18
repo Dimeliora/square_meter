@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import PropTypes from "prop-types";
 
-import closeImage from "./assets/multiply-black.png";
+import { ReactComponent as CloseIcon } from "./assets/close.svg";
 
 import "./Modal.scss";
 
@@ -24,7 +24,7 @@ const Modal = ({ children, onClose }) => {
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-window" onClick={(e) => e.stopPropagation()}>
         <button className="modal-close" onClick={onClose}>
-          <img src={closeImage} alt="Close button" />
+          <CloseIcon />
         </button>
         {children}
       </div>

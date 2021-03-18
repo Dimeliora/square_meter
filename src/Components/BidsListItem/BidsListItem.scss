@@ -13,27 +13,30 @@
   color: $dark;
   font-size: 0.875rem;
   font-weight: 500;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  cursor: pointer;
 
   @media screen and (max-width: 575px) {
     font-size: 0.75rem;
   }
 
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: 4px 7px 35px $gray-cold;
-  }
-
   &__name {
-    flex: 1 1 40%;
+    flex: 1 0 50%;
     padding: 0 20px;
     text-align: left;
+    word-break: break-word;
+
+    @media screen and (max-width: 575px) {
+      padding: 0 10px;
+    }
   }
 
   &__phone {
-    flex: 1 1 30%;
+    flex: 1 0 40%;
     padding: 0 20px;
     text-align: left;
+    word-break: break-word;
+
+    @media screen and (max-width: 575px) {
+      padding: 0 10px;
+    }
   }
 }

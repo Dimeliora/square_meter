@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 
 import ROUTES from "../../configs/routes";
 
-import ToTopButton from "../ToTopButton";
+import ScrollToTop from "../ScrollToTop";
 import Header from "../Header";
 import Footer from "../Footer";
 import ErrorPage from "../../Pages/ErrorPage";
@@ -31,6 +31,7 @@ const App = () => {
 
   return (
     <div className="app-wrapper">
+      <ScrollToTop isActive={isToTopBtnVisible} />
       <Switch>
         <Route path="/404" component={ErrorPage} />
         <Route>
@@ -51,7 +52,6 @@ const App = () => {
           <Footer />
         </Route>
       </Switch>
-      <ToTopButton isActive={isToTopBtnVisible} />
     </div>
   );
 };

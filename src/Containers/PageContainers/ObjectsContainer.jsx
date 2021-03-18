@@ -4,7 +4,7 @@ import {
   getInitData,
   setFilterInputValue,
   setInitialFilterValues,
-  getFilteredData,
+  getObjectsData,
 } from "../../Store/ActionCreators/ObjectsActionCreators";
 import { toggleObjectAsFavourite } from "../../Store/ActionCreators/FavouritesActionCreators";
 
@@ -23,7 +23,7 @@ const mapDispatchToProps = {
   getInitData,
   setFilterInputValue,
   setInitialFilterValues,
-  getFilteredData,
+  getObjectsData,
   toggleObjectAsFavourite,
 };
 
